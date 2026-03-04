@@ -12,10 +12,8 @@
       --line:#e9e9e9;
 
       --brown:#6a4a2e;
-      --gold:#caa24a;
 
       --container: 1100px;
-      --radius: 18px;
 
       --s1: 8px;
       --s2: 12px;
@@ -43,18 +41,16 @@
       margin-inline:auto;
     }
 
-    /* ===== sections ===== */
     .section{ padding: var(--s6) 0; }
     .divider{ border-top:1px solid var(--line); }
 
-    /* ===== top banner (logo over photo) ===== */
+    /* ===== top banner ===== */
     .top-hero{
       position:relative;
       height: 240px;
       overflow:hidden;
       background: #f6f6f6;
     }
-    /* ここを差し替え：実際の上部帯画像を入れる */
     .top-hero::before{
       content:"";
       position:absolute; inset:0;
@@ -84,7 +80,7 @@
       color:#333;
     }
 
-    /* ===== split images (yoga / esthe) ===== */
+    /* ===== desktop only split images ===== */
     .split{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -103,6 +99,8 @@
       object-fit:cover;
       transform:scale(1.02);
     }
+
+    /* ===== 92% badge ===== */
     .badge-92{
       position:absolute;
       top: 18px;
@@ -133,17 +131,27 @@
       line-height:1;
       letter-spacing:-.02em;
     }
-    .badge-92 span{
-      font-size: 14px;
-    }
+    .badge-92 span{ font-size: 14px; }
 
-    /* ===== 2 service columns ===== */
+    /* ===== services layout ===== */
     .services{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--s6);
       align-items:start;
     }
+
+    /* サービスを「完全分離」するための外枠 */
+    .service-block{
+      border-top: 0;
+    }
+    .service-sep{
+      display:none; /* mobileでのみ使う */
+      height: 1px;
+      background: var(--line);
+      margin: var(--s6) 0;
+    }
+
     .service{
       padding-top: var(--s4);
     }
@@ -168,6 +176,24 @@
       letter-spacing:.02em;
     }
 
+    /* ===== mobile-only service hero (each service has its own image) ===== */
+    .service-hero{
+      display:none; /* desktopでは非表示 */
+      position:relative;
+      height: 220px;
+      overflow:hidden;
+      border-radius: 14px;
+      background:#f3f3f3;
+      border:1px solid var(--line);
+      box-shadow: 0 14px 30px rgba(0,0,0,.10);
+    }
+    .service-hero img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform:scale(1.02);
+    }
+
     /* ===== features circles ===== */
     .feature-row{
       display:grid;
@@ -176,9 +202,7 @@
       margin: var(--s4) 0 var(--s4);
       align-items:start;
     }
-    .feature{
-      text-align:center;
-    }
+    .feature{ text-align:center; }
     .medal{
       width: 140px;
       height: 140px;
@@ -205,7 +229,7 @@
       padding: 0 6px;
     }
 
-    /* ===== pill buttons (brown) ===== */
+    /* ===== pill buttons ===== */
     .btn-col{
       display:grid;
       gap: 12px;
@@ -249,7 +273,6 @@
       font-size:14px;
     }
 
-    /* ===== right-side note ===== */
     .note{
       text-align:center;
       color:#333;
@@ -257,17 +280,10 @@
       font-size: 14px;
     }
 
-    /* ===== Instagram block ===== */
-    .insta-row{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--s6);
-      margin-top: var(--s6);
-      align-items:start;
-    }
+    /* ===== Instagram (per service) ===== */
     .insta{
       text-align:center;
-      padding: var(--s4) 0;
+      padding: var(--s5) 0 0;
     }
     .insta .ig{
       width: 86px; height: 86px;
@@ -299,7 +315,7 @@
       border-color:#dcc9c0;
     }
 
-    /* ===== mid nav (staff/blog/contact) ===== */
+    /* ===== mid nav ===== */
     .mid-nav{
       background:
         linear-gradient(to bottom, rgba(255,255,255,.65), rgba(255,255,255,.65)),
@@ -326,9 +342,7 @@
     }
 
     /* ===== map ===== */
-    .map{
-      padding: var(--s6) 0 var(--s7);
-    }
+    .map{ padding: var(--s6) 0 var(--s7); }
     .mapbox{
       width: min(720px, 100%);
       margin: 0 auto;
@@ -345,21 +359,33 @@
       display:block;
     }
 
-    /* ===== responsive tweaks ===== */
+    /* ===== responsive: "完全分離" ===== */
     @media (max-width: 900px){
-      .split{ grid-template-columns: 1fr; }
-      .services{ grid-template-columns: 1fr; }
+      /* 上の2分割画像は消して、各サービス内に画像を出す */
+      .split{ display:none; }
+
+      .services{
+        grid-template-columns: 1fr;
+        gap: 0; /* セパレータで区切る */
+      }
+
+      .service-hero{ display:block; }
+
+      /* サービス間の区切り線 */
+      .service-sep{ display:block; }
+
+      /* 特徴の丸は縦積み（視認性優先） */
       .feature-row{ grid-template-columns: 1fr; }
       .medal{ width: 150px; height:150px; }
+
       .top-hero{ height: 220px; }
       .badge-92{ width: 120px; height: 120px; }
       .service .title{ font-size: 30px; }
-      .insta-row{ grid-template-columns: 1fr; }
+
       .navpill{ min-width: 240px; }
       .mapbox iframe{ height: 420px; }
     }
 
-    /* ===== helpers ===== */
     .sr{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
   </style>
 </head>
@@ -376,10 +402,9 @@
     </div>
   </header>
 
-  <!-- 画像2分割（左：ハンモック、右：エステ） -->
-  <section class="split" aria-label="メイン画像">
+  <!-- desktop：画像2分割（左：ハンモック、右：エステ） -->
+  <section class="split" aria-label="メイン画像（PC）">
     <div class="pane">
-      <!-- ここを差し替え：左のハンモック画像 -->
       <img src="hero-left.jpg" alt="ハンモックヨガ" />
       <div class="badge-92" aria-label="お客様満足度">
         <div>
@@ -389,104 +414,125 @@
       </div>
     </div>
     <div class="pane">
-      <!-- ここを差し替え：右のエステ画像 -->
       <img src="hero-right.jpg" alt="健康エステ" />
     </div>
   </section>
 
-  <!-- 2サービス（左右カラム） -->
+  <!-- 2サービス（PCは左右、SPは上下で完全分離） -->
   <main class="section" aria-label="サービス紹介">
     <div class="container">
       <div class="services">
 
-        <!-- 左：ハンモックヨガ -->
-        <section class="service" aria-label="ハンモックヨガ">
-          <div class="kicker">整体師が考えた</div>
-          <h2 class="title">ハンモックヨガ</h2>
-
-          <div class="feature-row" aria-label="特徴（ハンモックヨガ）">
-            <div class="feature">
-              <div class="medal"><strong>特徴1<br>整体師が<br>考案</strong></div>
-              <p>例：悩みに合わせたレッスン内容</p>
-            </div>
-            <div class="feature">
-              <div class="medal"><strong>特徴2<br>シニア歓迎<br><span style="font-size:14px;font-weight:800;">20〜90代まで</span></strong></div>
-              <p>例：強度別で無理なく</p>
-            </div>
-            <div class="feature">
-              <div class="medal"><strong>特徴3<br>通い続ける<br>楽しさ！</strong></div>
-              <p>例：新感覚で続けやすい</p>
+        <!-- ===== ハンモックヨガ（ブロック単位） ===== -->
+        <section class="service-block" aria-label="ハンモックヨガ ブロック">
+          <!-- mobile：サービス内ヒーロー -->
+          <div class="service-hero" aria-label="ハンモックヨガ 画像（SP）">
+            <img src="hero-left.jpg" alt="ハンモックヨガ" />
+            <div class="badge-92" aria-label="お客様満足度">
+              <div>
+                <small>肩こり・腰痛<br>お客様満足率</small>
+                <b>92</b><span>%</span>
+              </div>
             </div>
           </div>
 
-          <div class="btn-col" aria-label="ハンモックヨガ ボタン">
-            <a class="pillbtn" href="#schedule">レッスンスケジュール</a>
-            <a class="pillbtn" href="#price-yoga">料金</a>
+          <div class="service" aria-label="ハンモックヨガ">
+            <div class="kicker">整体師が考えた</div>
+            <h2 class="title">ハンモックヨガ</h2>
+
+            <div class="feature-row" aria-label="特徴（ハンモックヨガ）">
+              <div class="feature">
+                <div class="medal"><strong>特徴1<br>整体師が<br>考案</strong></div>
+                <p>例：悩みに合わせたレッスン内容</p>
+              </div>
+              <div class="feature">
+                <div class="medal"><strong>特徴2<br>シニア歓迎<br><span style="font-size:14px;font-weight:800;">20〜90代まで</span></strong></div>
+                <p>例：強度別で無理なく</p>
+              </div>
+              <div class="feature">
+                <div class="medal"><strong>特徴3<br>通い続ける<br>楽しさ！</strong></div>
+                <p>例：新感覚で続けやすい</p>
+              </div>
+            </div>
+
+            <div class="btn-col" aria-label="ハンモックヨガ ボタン">
+              <a class="pillbtn" href="#schedule">レッスンスケジュール</a>
+              <a class="pillbtn" href="#price-yoga">料金</a>
+            </div>
+
+            <div class="linebar" aria-label="体験予約（LINE）">
+              <span>体験予約は、</span>
+              <span class="lineicon" aria-hidden="true">LINE</span>
+              <span>から</span>
+            </div>
+
+            <!-- Instagram（サービス内） -->
+            <div class="insta" aria-label="ハンモックInstagram">
+              <div class="ig" aria-hidden="true">◎</div>
+              <div class="label">ハンモックInstagram</div>
+              <div class="bubble">レッスンの様子も<br>見られます</div>
+            </div>
           </div>
 
-          <div class="linebar" aria-label="体験予約（LINE）">
-            <span>体験予約は、</span>
-            <span class="lineicon" aria-hidden="true">LINE</span>
-            <span>から</span>
-          </div>
+          <!-- mobileのみ表示：サービス間の区切り -->
+          <div class="service-sep" aria-hidden="true"></div>
         </section>
 
-        <!-- 右：健康エステ -->
-        <section class="service" aria-label="健康エステ">
-          <div class="kicker">マシンで深層までアプローチ</div>
-          <h2 class="title"><span class="small">fits</span>健康エステ</h2>
-
-          <div class="feature-row" aria-label="特徴（健康エステ）">
-            <div class="feature">
-              <div class="medal"><strong>特徴1<br>効果が<br>持続</strong></div>
-              <p>例：高周波等で深部にアプローチ</p>
-            </div>
-            <div class="feature">
-              <div class="medal"><strong>特徴2<br>名古屋人気<br><span style="font-size:14px;font-weight:800;">サロン監修</span></strong></div>
-              <p>例：監修サロンのノウハウ</p>
-            </div>
-            <div class="feature">
-              <div class="medal"><strong>特徴3<br>引き締まる</strong></div>
-              <p>例：コリ/ハリの改善でスッキリ</p>
-            </div>
+        <!-- ===== 健康エステ（ブロック単位） ===== -->
+        <section class="service-block" aria-label="健康エステ ブロック">
+          <!-- mobile：サービス内ヒーロー -->
+          <div class="service-hero" aria-label="健康エステ 画像（SP）">
+            <img src="hero-right.jpg" alt="健康エステ" />
           </div>
 
-          <div class="btn-col" aria-label="健康エステ ボタン">
-            <a class="pillbtn" href="#price-esthe">料金</a>
-            <a class="pillbtn" href="#hotpepper">ホットペッパー</a>
-          </div>
+          <div class="service" aria-label="健康エステ">
+            <div class="kicker">マシンで深層までアプローチ</div>
+            <h2 class="title"><span class="small">fits</span>健康エステ</h2>
 
-          <p class="note">
-            体験予約は、ホットペッパーとLINE<br>
-            どちらからでも受け付けております。
-          </p>
+            <div class="feature-row" aria-label="特徴（健康エステ）">
+              <div class="feature">
+                <div class="medal"><strong>特徴1<br>効果が<br>持続</strong></div>
+                <p>例：高周波等で深部にアプローチ</p>
+              </div>
+              <div class="feature">
+                <div class="medal"><strong>特徴2<br>名古屋人気<br><span style="font-size:14px;font-weight:800;">サロン監修</span></strong></div>
+                <p>例：監修サロンのノウハウ</p>
+              </div>
+              <div class="feature">
+                <div class="medal"><strong>特徴3<br>引き締まる</strong></div>
+                <p>例：コリ/ハリの改善でスッキリ</p>
+              </div>
+            </div>
 
-          <div class="linebar" aria-label="不明点（LINE）" style="max-width:560px;">
-            <span>ご不明なところがあれば、気軽に</span>
-            <span class="lineicon" aria-hidden="true">LINE</span>
+            <div class="btn-col" aria-label="健康エステ ボタン">
+              <a class="pillbtn" href="#price-esthe">料金</a>
+              <a class="pillbtn" href="#hotpepper">ホットペッパー</a>
+            </div>
+
+            <p class="note">
+              体験予約は、ホットペッパーとLINE<br>
+              どちらからでも受け付けております。
+            </p>
+
+            <div class="linebar" aria-label="不明点（LINE）" style="max-width:560px;">
+              <span>ご不明なところがあれば、気軽に</span>
+              <span class="lineicon" aria-hidden="true">LINE</span>
+            </div>
+
+            <!-- Instagram（サービス内） -->
+            <div class="insta" aria-label="健康エステInstagram">
+              <div class="ig" aria-hidden="true">◎</div>
+              <div class="label">健康エステInstagram</div>
+              <div class="bubble right">施術風景も<br>見られます！</div>
+            </div>
           </div>
         </section>
 
       </div>
-
-      <!-- Instagram 2つ -->
-      <section class="insta-row" aria-label="Instagram">
-        <div class="insta">
-          <div class="ig" aria-hidden="true">◎</div>
-          <div class="label">ハンモックInstagram</div>
-          <div class="bubble">レッスンの様子も<br>見られます</div>
-        </div>
-        <div class="insta">
-          <div class="ig" aria-hidden="true">◎</div>
-          <div class="label">健康エステInstagram</div>
-          <div class="bubble right">施術風景も<br>見られます！</div>
-        </div>
-      </section>
-
     </div>
   </main>
 
-  <!-- 中段：スタッフ/ブログ/問い合わせ（背景付き） -->
+  <!-- 中段：スタッフ/ブログ/問い合わせ -->
   <section class="mid-nav" aria-label="ナビ">
     <div class="container">
       <div class="navpills">
@@ -501,7 +547,6 @@
   <section class="map" aria-label="アクセス">
     <div class="container">
       <div class="mapbox" aria-label="Google Map">
-        <!-- ここは後で実住所の埋め込みURLに差し替え -->
         <iframe
           title="Google Map"
           loading="lazy"
