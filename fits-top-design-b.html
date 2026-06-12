@@ -157,6 +157,26 @@ nav a:hover::after{width:100%}
   writing-mode:vertical-rl;font-family:var(--serif);color:#fff;font-size:19px;letter-spacing:.32em;
   border-left:1px solid #ffffff99;padding-left:12px;text-shadow:0 1px 12px rgb(46 42 38/.6)}
 
+/* ===== レッスンメニュー ===== */
+.lesson-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.lesson-card{display:flex;flex-direction:column;background:#fff}
+.lesson-card .pic{aspect-ratio:4/3;overflow:hidden}
+.lesson-card .pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.lesson-card:hover .pic img{transform:scale(1.04)}
+.lesson-card .body{flex:1;padding:22px 22px 26px;border:1px solid var(--rule);border-top:none}
+.lesson-card .num{font-family:var(--en);font-style:italic;font-size:15px;letter-spacing:.22em;color:var(--rose-deep)}
+.lesson-card h3{font-family:var(--serif);font-weight:600;font-size:18px;letter-spacing:.1em;line-height:1.6;margin:6px 0 8px}
+.lesson-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.9}
+
+/* ===== スタッフ紹介 ===== */
+.staff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px 36px;max-width:1020px;margin-inline:auto}
+.staff-card{text-align:center}
+.staff-card .face{width:148px;height:148px;border-radius:50%;object-fit:cover;margin:0 auto 16px;filter:saturate(.92)}
+.staff-card .role{display:block;font-family:var(--en);font-style:italic;font-size:13px;letter-spacing:.22em;color:var(--gold-deep)}
+.staff-card h3{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:.14em;margin:4px 0 10px}
+.staff-card h3::after{content:"";display:block;width:1px;height:18px;background:var(--gold);margin:10px auto 0}
+.staff-card p{font-size:14px;color:var(--ink-soft);line-height:2;text-align:left}
+
 /* ===== お客様の声 ===== */
 .voice{background:#fff}
 .voice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
@@ -233,9 +253,13 @@ footer .copy{font-family:var(--en);font-style:italic;font-size:13px;margin-top:3
   nav,.head-cta{display:none}
   .menu-btn{display:flex;margin-left:auto;flex-direction:column;gap:5px;background:none;border:none;padding:12px;cursor:pointer}
   .menu-btn span{width:26px;height:1.5px;background:var(--ink);display:block}
-  .hero{min-height:88vh}
-  .tate{top:9%;right:7%;font-size:clamp(24px,7vw,34px)}
+  /* ヒーロー:縦書きキャッチと下部の文章が重ならないよう、
+     スマホでは絶対配置をやめて縦に積む(縦書きの雰囲気は維持) */
+  .hero{min-height:88vh;flex-direction:column;align-items:stretch;justify-content:space-between;padding-top:56px}
+  .tate{position:static;align-self:flex-end;margin:0 7% 36px auto;font-size:clamp(22px,6.4vw,30px)}
   .scroll{display:none}
+  .hero-foot{padding-bottom:46px}
+  .hero-stat strong{font-size:44px}
   .menu-item,.menu-item.rev{grid-template-columns:1fr}
   .menu-item .photo{min-height:300px;order:0!important}
   .menu-item .body{padding:40px 26px}
@@ -244,6 +268,10 @@ footer .copy{font-family:var(--en);font-style:italic;font-size:13px;margin-top:3
   .vcard:first-child{border-top:none}
   .flow-grid{grid-template-columns:1fr;gap:48px;max-width:440px;margin-inline:auto}
   .ig-grid,.access-grid{grid-template-columns:1fr}
+  .lesson-grid{grid-template-columns:1fr 1fr;gap:18px}
+  .lesson-card .body{padding:16px 14px 20px}
+  .lesson-card h3{font-size:16px}
+  .staff-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));max-width:520px;gap:48px}
   .sec{padding:76px 0}
 }
 @media (min-width:961px){body{padding-bottom:0}.fixed-cta{display:none}}
@@ -366,6 +394,63 @@ footer .copy{font-family:var(--en);font-style:italic;font-size:13px;margin-top:3
   </div>
 </section>
 
+<!-- ⑤-2 レッスンメニュー(4種類) -->
+<section class="sec" id="lesson" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">Lesson Menu</span>
+      <h2>四つのレッスン</h2>
+      <span class="bar"></span>
+    </div>
+    <div class="lesson-grid">
+      <div class="lesson-card">
+        <div class="pic">
+          <!-- IMAGE: ハンモック整体のレッスン写真 -->
+          <img src="https://images.unsplash.com/photo-1738681172508-12b39b19ffd2?auto=format&fit=crop&w=800&q=68" alt="ハンモック整体のレッスン">
+        </div>
+        <div class="body">
+          <span class="num">Lesson 01</span>
+          <h3>ハンモック整体</h3>
+          <p>整体の考え方をもとに、布の力で体を芯からゆるめる一本。肩こり・腰痛が気になる方へ。</p>
+        </div>
+      </div>
+      <div class="lesson-card">
+        <div class="pic">
+          <!-- IMAGE: リラックスのレッスン写真 -->
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=68" alt="リラックスのレッスン">
+        </div>
+        <div class="body">
+          <span class="num">Lesson 02</span>
+          <h3>リラックス</h3>
+          <p>布に包まれて、ゆったりと呼吸を深める。心とからだをほどく、癒やしの時間です。</p>
+        </div>
+      </div>
+      <div class="lesson-card">
+        <div class="pic">
+          <!-- IMAGE: 椅子エアリアルのレッスン写真 -->
+          <img src="https://images.unsplash.com/photo-1620279154913-75ac25085f2b?auto=format&fit=crop&w=800&q=68" alt="椅子エアリアルのレッスン">
+        </div>
+        <div class="body">
+          <span class="num">Lesson 03</span>
+          <h3>椅子エアリアル</h3>
+          <p>布に「座る」感覚で行うレッスン。はじめての方やシニアの方も、安心してどうぞ。</p>
+        </div>
+      </div>
+      <div class="lesson-card">
+        <div class="pic">
+          <!-- IMAGE: 美脚・美尻エアリアルのレッスン写真 -->
+          <img src="https://images.unsplash.com/photo-1578882113036-761708189373?auto=format&fit=crop&w=800&q=68" alt="美脚・美尻エアリアルのレッスン">
+        </div>
+        <div class="body">
+          <span class="num">Lesson 04</span>
+          <h3>美脚・美尻エアリアル</h3>
+          <p>下半身を集中して引き締め、美しいラインへ。しっかり動きたい方に人気の一本。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ⑥ お客様の声 -->
 <section class="voice sec" id="voice">
   <div class="wrap">
@@ -426,6 +511,52 @@ footer .copy{font-family:var(--en);font-style:italic;font-size:13px;margin-top:3
         </div>
         <h3>体験スタート</h3>
         <p>動きやすい服装でどうぞ。持ち物は予約時にご案内します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑦-2 スタッフ紹介 -->
+<section class="sec" id="staff" style="padding-top:30px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">Staff</span>
+      <h2>スタッフ紹介</h2>
+      <span class="bar"></span>
+    </div>
+    <!--
+      data-visible の数字を変えると、先頭から何人表示するかを変更できます。
+      (例:data-visible="2" にすると先頭の2名だけ表示。カードの追加・削除も自由です)
+      ※ 写真・名前・コメントはダミーです。実際のスタッフ情報に差し替えてください。
+    -->
+    <div class="staff-grid" data-visible="4">
+      <div class="staff-card">
+        <!-- IMAGE: スタッフ顔写真 -->
+        <img class="face" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=70" alt="代表 タケシの顔写真">
+        <span class="role">Director / 整体師</span>
+        <h3>タケシ</h3>
+        <p>整体師として多くの肩こり・腰痛と向き合ってきました。「気持ちいい」から続く、を大切にしています。(ダミー)</p>
+      </div>
+      <div class="staff-card">
+        <!-- IMAGE: スタッフ顔写真 -->
+        <img class="face" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=70" alt="インストラクター ミキの顔写真">
+        <span class="role">Yoga Instructor</span>
+        <h3>ミキ</h3>
+        <p>はじめての方も、体がかたい方もご安心を。一人ひとりのペースに寄り添ってご案内します。(ダミー)</p>
+      </div>
+      <div class="staff-card">
+        <!-- IMAGE: スタッフ顔写真 -->
+        <img class="face" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=70" alt="エステティシャン アヤの顔写真">
+        <span class="role">Esthetician</span>
+        <h3>アヤ</h3>
+        <p>お疲れの場所、なりたいラインをうかがいながら、深層までていねいにアプローチします。(ダミー)</p>
+      </div>
+      <div class="staff-card">
+        <!-- IMAGE: スタッフ顔写真 -->
+        <img class="face" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=70" alt="インストラクター リエの顔写真">
+        <span class="role">Yoga Instructor</span>
+        <h3>リエ</h3>
+        <p>ふわりと浮く心地よさを、ぜひ一度。穏やかな時間を、ご一緒できたらうれしいです。(ダミー)</p>
       </div>
     </div>
   </div>
@@ -508,7 +639,7 @@ footer .copy{font-family:var(--en);font-style:italic;font-size:13px;margin-top:3
         <li><a href="#yoga">ハンモックヨガ</a></li>
         <li><a href="#este">健康エステ</a></li>
         <li><a href="#">料金</a></li>
-        <li><a href="#">スタッフ</a></li>
+        <li><a href="#staff">スタッフ</a></li>
         <li><a href="#news">ブログ</a></li>
         <li><a href="#">お問い合わせ</a></li>
         <li><a href="#">プライバシーポリシー</a></li>
@@ -523,6 +654,16 @@ footer .copy{font-family:var(--en);font-style:italic;font-size:13px;margin-top:3
   <a class="btn btn-line" href="#yoga">ヨガ体験(LINE)</a>
   <a class="btn btn-hp" href="#este">エステ予約</a>
 </div>
+
+<script>
+/* スタッフ紹介の表示数制御:.staff-grid の data-visible に指定した人数だけ先頭から表示します */
+document.querySelectorAll('.staff-grid[data-visible]').forEach(function(grid){
+  var n = parseInt(grid.getAttribute('data-visible'), 10);
+  Array.prototype.forEach.call(grid.children, function(card, i){
+    if (!isNaN(n) && i >= n) card.style.display = 'none';
+  });
+});
+</script>
 
 </body>
 </html>
