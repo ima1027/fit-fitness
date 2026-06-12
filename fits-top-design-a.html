@@ -173,6 +173,30 @@ nav a:hover{color:var(--yoga-deep)}
 .svc.yoga .bigword{-webkit-text-stroke-color:rgb(232 101 125/.18)}
 .svc.este .bigword{left:-2%;right:auto;-webkit-text-stroke-color:rgb(176 130 79/.2)}
 
+/* ===== レッスンメニュー ===== */
+.lesson-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.lesson-card{background:#fffe;border:1px solid var(--rule);border-radius:22px;overflow:hidden;
+  box-shadow:0 8px 22px rgb(61 53 49/.08);transition:transform .2s ease}
+.lesson-card:hover{transform:translateY(-6px)}
+.lesson-card .pic{aspect-ratio:4/3;overflow:hidden}
+.lesson-card .pic img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.lesson-card:hover .pic img{transform:scale(1.05)}
+.lesson-card .body{padding:18px 20px 22px}
+.lesson-card .no{display:inline-block;font-family:var(--font-en);font-size:12px;letter-spacing:.22em;
+  color:var(--yoga-deep);background:var(--yoga-bg);border-radius:999px;padding:3px 14px}
+.lesson-card h3{font-family:var(--font-display);font-weight:700;font-size:18px;margin:10px 0 6px;line-height:1.5}
+.lesson-card p{font-size:14px;color:var(--ink-soft);line-height:1.75}
+
+/* ===== スタッフ紹介 ===== */
+.staff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px;max-width:1060px;margin-inline:auto}
+.staff-card{background:#fffe;border:1px solid var(--rule);border-radius:22px;padding:30px 24px 26px;
+  text-align:center;box-shadow:0 8px 22px rgb(61 53 49/.08)}
+.staff-card .face{width:124px;height:124px;border-radius:50%;object-fit:cover;margin:0 auto 14px;
+  border:4px solid var(--yoga-bg);box-shadow:0 6px 16px rgb(61 53 49/.12)}
+.staff-card .role{font-size:12.5px;font-weight:700;color:var(--yoga-deep);letter-spacing:.08em}
+.staff-card h3{font-family:var(--font-display);font-weight:900;font-size:19px;margin:2px 0 10px}
+.staff-card p{font-size:14px;color:var(--ink-soft);line-height:1.8;text-align:left}
+
 /* ===== お客様の声 ===== */
 .voice{background:var(--ink);color:#F4EDE6;overflow:hidden}
 .voice .sec-head .eyebrow{color:#C9B8AA}
@@ -262,6 +286,10 @@ footer .copy{font-family:var(--font-en);font-size:13px;margin-top:28px;color:#B9
   .stat strong{font-size:38px}
   .hero-card{display:none}
   .entry-grid,.svc-grid,.ig-grid,.access-grid{grid-template-columns:1fr}
+  .lesson-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .lesson-card .body{padding:14px 14px 18px}
+  .lesson-card h3{font-size:16px}
+  .staff-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));max-width:520px}
   .voice-grid,.flow-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto}
   .collage{padding:0 6% 16% 0}
   .svc .order-swap{order:-1}
@@ -401,6 +429,63 @@ footer .copy{font-family:var(--font-en);font-size:13px;margin-top:28px;color:#B9
   </div>
 </section>
 
+<!-- ⑤-2 レッスンメニュー(4種類) -->
+<section class="sec" id="lesson" style="padding-top:48px">
+  <span class="bigword" aria-hidden="true" style="right:-2%;top:0;-webkit-text-stroke-color:rgb(232 101 125/.14)">LESSON</span>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Lesson Menu</span>
+      <h2>選べる4つのレッスン</h2>
+    </div>
+    <div class="lesson-grid">
+      <div class="lesson-card">
+        <div class="pic">
+          <!-- IMAGE: ハンモック整体のレッスン写真 -->
+          <img src="https://images.unsplash.com/photo-1738681172508-12b39b19ffd2?auto=format&fit=crop&w=800&q=68" alt="ハンモック整体のレッスン">
+        </div>
+        <div class="body">
+          <span class="no">LESSON 01</span>
+          <h3>ハンモック整体</h3>
+          <p>整体の考え方をベースに、布の力で体を芯からゆるめるレッスン。肩こり・腰痛が気になる方に。</p>
+        </div>
+      </div>
+      <div class="lesson-card">
+        <div class="pic">
+          <!-- IMAGE: リラックスのレッスン写真 -->
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=68" alt="リラックスのレッスン">
+        </div>
+        <div class="body">
+          <span class="no">LESSON 02</span>
+          <h3>リラックス</h3>
+          <p>布に包まれてゆったり呼吸。がんばらずに心とからだをほどく、癒やしのクラスです。</p>
+        </div>
+      </div>
+      <div class="lesson-card">
+        <div class="pic">
+          <!-- IMAGE: 椅子エアリアルのレッスン写真 -->
+          <img src="https://images.unsplash.com/photo-1620279154913-75ac25085f2b?auto=format&fit=crop&w=800&q=68" alt="椅子エアリアルのレッスン">
+        </div>
+        <div class="body">
+          <span class="no">LESSON 03</span>
+          <h3>椅子エアリアル</h3>
+          <p>布に「座る」感覚で行うので、はじめての方やシニアの方も安心して楽しめます。</p>
+        </div>
+      </div>
+      <div class="lesson-card">
+        <div class="pic">
+          <!-- IMAGE: 美脚・美尻エアリアルのレッスン写真 -->
+          <img src="https://images.unsplash.com/photo-1578882113036-761708189373?auto=format&fit=crop&w=800&q=68" alt="美脚・美尻エアリアルのレッスン">
+        </div>
+        <div class="body">
+          <span class="no">LESSON 04</span>
+          <h3>美脚・美尻エアリアル</h3>
+          <p>下半身を集中的に引き締めて、すっきり美しいラインへ。しっかり動きたい方に人気。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ⑥ 健康エステ -->
 <section class="svc este sec" id="este">
   <div class="washi" aria-hidden="true">
@@ -501,6 +586,51 @@ footer .copy{font-family:var(--font-en);font-size:13px;margin-top:28px;color:#B9
   </div>
 </section>
 
+<!-- ⑧-2 スタッフ紹介 -->
+<section class="sec" id="staff" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Staff</span>
+      <h2>スタッフ紹介</h2>
+    </div>
+    <!--
+      data-visible の数字を変えると、先頭から何人表示するかを変更できます。
+      (例:data-visible="2" にすると先頭の2名だけ表示。カードの追加・削除も自由です)
+      ※ 写真・名前・コメントはダミーです。実際のスタッフ情報に差し替えてください。
+    -->
+    <div class="staff-grid" data-visible="4">
+      <div class="staff-card">
+        <!-- IMAGE: スタッフ顔写真 -->
+        <img class="face" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=70" alt="代表 タケシの顔写真">
+        <span class="role">代表・整体師</span>
+        <h3>タケシ</h3>
+        <p>整体師として多くの肩こり・腰痛と向き合ってきました。「気持ちいい」から続けられるレッスンをお届けします。(ダミー)</p>
+      </div>
+      <div class="staff-card">
+        <!-- IMAGE: スタッフ顔写真 -->
+        <img class="face" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=70" alt="インストラクター ミキの顔写真">
+        <span class="role">ヨガインストラクター</span>
+        <h3>ミキ</h3>
+        <p>はじめての方も、体がかたい方も大丈夫。一人ひとりのペースに合わせて、ていねいにサポートします。(ダミー)</p>
+      </div>
+      <div class="staff-card">
+        <!-- IMAGE: スタッフ顔写真 -->
+        <img class="face" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=70" alt="エステティシャン アヤの顔写真">
+        <span class="role">エステティシャン</span>
+        <h3>アヤ</h3>
+        <p>お疲れの場所やなりたいラインをうかがいながら、深層までしっかりアプローチ。お気軽にご相談ください。(ダミー)</p>
+      </div>
+      <div class="staff-card">
+        <!-- IMAGE: スタッフ顔写真 -->
+        <img class="face" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=70" alt="インストラクター リエの顔写真">
+        <span class="role">ヨガインストラクター</span>
+        <h3>リエ</h3>
+        <p>ふわっと浮く気持ちよさをぜひ一度体験してほしいです。笑顔いっぱいのレッスンでお待ちしています。(ダミー)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ⑨ Instagram:ポラロイド風 -->
 <section class="sec" style="padding-top:40px">
   <div class="wrap">
@@ -575,7 +705,7 @@ footer .copy{font-family:var(--font-en);font-size:13px;margin-top:28px;color:#B9
         <li><a href="#yoga">ハンモックヨガ</a></li>
         <li><a href="#este">健康エステ</a></li>
         <li><a href="#">料金</a></li>
-        <li><a href="#">スタッフ</a></li>
+        <li><a href="#staff">スタッフ</a></li>
         <li><a href="#news">ブログ</a></li>
         <li><a href="#">お問い合わせ</a></li>
         <li><a href="#">プライバシーポリシー</a></li>
@@ -590,6 +720,16 @@ footer .copy{font-family:var(--font-en);font-size:13px;margin-top:28px;color:#B9
   <a class="btn btn-line" href="#yoga">ヨガ体験<span class="ico">LINE</span></a>
   <a class="btn btn-hp" href="#este">エステ予約</a>
 </div>
+
+<script>
+/* スタッフ紹介の表示数制御:.staff-grid の data-visible に指定した人数だけ先頭から表示します */
+document.querySelectorAll('.staff-grid[data-visible]').forEach(function(grid){
+  var n = parseInt(grid.getAttribute('data-visible'), 10);
+  Array.prototype.forEach.call(grid.children, function(card, i){
+    if (!isNaN(n) && i >= n) card.style.display = 'none';
+  });
+});
+</script>
 
 </body>
 </html>
