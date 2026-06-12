@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fit's ハンモック&フィットネス|多治見のハンモックヨガ・健康エステ【B案】</title>
+<!--
+  ============================================================
+  fit's トップページ デザインモック B案「上質・和モダン」
+  ------------------------------------------------------------
+  A案(ポップ・親しみ)との対比:
+    ・明朝体 × 縦書きキャッチ × たっぷりの余白
+    ・色数を絞った落ち着いたパレット(生成り/墨/灰桜/金茶)
+    ・動きは最小限、写真と文字組みで魅せる
+  ・写真は Unsplash フリー素材。<!- - IMAGE - -> コメント箇所で差し替え。
+  ・透かし背景(.washi)、実店舗の地図・住所・営業時間入り(要確認)。
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --base:#F7F4EF;   /* 生成り */
+  --ink:#2E2A26;    /* 墨 */
+  --ink-soft:#6E645B;
+  --rose:#C97B8A;   /* 灰桜(ヨガ) */
+  --rose-deep:#A75E6E;
+  --gold:#A98B5F;   /* 金茶(エステ) */
+  --gold-deep:#8A6F47;
+  --line:#06C755; --hp:#EA5A24;
+  --rule:#D9CFC2;
+  --serif:"Shippori Mincho",serif;
+  --sans:"Zen Kaku Gothic New",sans-serif;
+  --en:"Cormorant Garamond",serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}}
+body{font-family:var(--sans);background:var(--base);color:var(--ink);
+  font-size:16.5px;line-height:2.05;letter-spacing:.04em;
+  -webkit-font-smoothing:antialiased;padding-bottom:74px;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+
+.wrap{max-width:1140px;margin-inline:auto;padding-inline:28px}
+.en{font-family:var(--en);font-style:italic;font-size:15px;letter-spacing:.22em;color:var(--gold-deep);display:block;margin-bottom:10px}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,3.6vw,38px);line-height:1.7;letter-spacing:.12em}
+.sec{padding:110px 0;position:relative}
+.sec-head{text-align:center;margin-bottom:64px;position:relative;z-index:2}
+.sec-head .bar{display:block;width:1px;height:46px;background:var(--gold);margin:22px auto 0}
+
+/* 透かし背景 */
+.washi{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.washi img{width:100%;height:100%;object-fit:cover;opacity:.09;filter:grayscale(.45) sepia(.18)}
+.washi::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,var(--base) 0%,transparent 25%,transparent 75%,var(--base) 100%)}
+.sec>.wrap{position:relative;z-index:2}
+
+/* ボタン:角を立てた静かな造形 */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  font-family:var(--serif);font-weight:600;font-size:16px;letter-spacing:.14em;
+  min-height:58px;padding:10px 38px;border:1px solid var(--ink);background:transparent;color:var(--ink);
+  transition:background .2s ease,color .2s ease,letter-spacing .2s ease;cursor:pointer}
+.btn:hover{background:var(--ink);color:#fff;letter-spacing:.2em}
+.btn-line{background:var(--line);border-color:var(--line);color:#fff}
+.btn-line:hover{background:#04A848;border-color:#04A848}
+.btn-hp{background:var(--hp);border-color:var(--hp);color:#fff}
+.btn-hp:hover{background:#C7491B;border-color:#C7491B}
+.btn .ico{font-family:var(--sans);font-size:12px;background:#ffffff2e;padding:2px 8px;letter-spacing:.08em}
+
+/* ヘッダー */
+header{position:sticky;top:0;z-index:50;background:#f7f4efe6;backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.head-in{display:flex;align-items:center;gap:30px;min-height:74px}
+.logo{font-family:var(--en);font-style:italic;font-size:30px;letter-spacing:.04em}
+.logo b{color:var(--rose);font-style:normal}
+.logo small{display:block;font-family:var(--sans);font-style:normal;font-size:9px;letter-spacing:.46em;color:var(--ink-soft);line-height:1}
+nav{margin-left:auto}
+nav ul{display:flex;gap:30px;list-style:none;font-size:14.5px;font-weight:500;letter-spacing:.1em}
+nav a{position:relative;padding-bottom:4px}
+nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--rose);transition:width .25s ease}
+nav a:hover::after{width:100%}
+.head-cta{display:flex;gap:10px}
+.head-cta .btn{min-height:42px;font-size:14px;padding:6px 20px}
+.menu-btn{display:none}
+
+/* ===== ヒーロー:全面写真+縦書きキャッチ ===== */
+.hero{position:relative;min-height:min(94vh,880px);overflow:hidden;display:flex;align-items:flex-end}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 28%;
+  animation:slowzoom 18s ease-out both}
+@keyframes slowzoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgb(46 42 38/.18) 0%,rgb(46 42 38/.08) 45%,rgb(46 42 38/.62) 100%)}
+/* 縦書きキャッチ(この案の象徴) */
+.tate{position:absolute;top:11%;right:8%;z-index:3;
+  writing-mode:vertical-rl;font-family:var(--serif);font-weight:600;color:#fff;
+  font-size:clamp(26px,4vw,44px);line-height:2.1;letter-spacing:.3em;
+  text-shadow:0 2px 26px rgb(46 42 38/.5);animation:fadein 1.4s ease both .2s}
+.tate .small{font-size:.48em;letter-spacing:.34em;opacity:.92;margin-top:.6em}
+@keyframes fadein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero-foot{position:relative;z-index:3;width:100%;color:#fff;padding-bottom:54px}
+.hero-foot .en{color:#EBD9B8;margin-bottom:4px}
+.hero-foot p.lead{font-size:clamp(15px,1.5vw,18px);font-weight:500;letter-spacing:.08em;max-width:560px;text-shadow:0 1px 16px rgb(46 42 38/.6)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+.hero-cta .btn{border-color:#fff;color:#fff}
+.hero-cta .btn:hover{background:#fff;color:var(--ink)}
+.hero-cta .btn-line,.hero-cta .btn-hp{color:#fff}
+.hero-cta .btn-line:hover{color:#fff}
+.hero-cta .btn-hp:hover{color:#fff}
+/* 実績:静かな数字 */
+.hero-stat{display:flex;align-items:baseline;gap:14px;margin-top:30px;border-top:1px solid #ffffff66;padding-top:18px;max-width:560px}
+.hero-stat strong{font-family:var(--en);font-style:normal;font-size:56px;font-weight:500;line-height:1}
+.hero-stat .u{font-size:22px}
+.hero-stat p{font-size:13.5px;letter-spacing:.1em;line-height:1.7}
+/* スクロールサイン */
+.scroll{position:absolute;left:28px;bottom:0;z-index:3;color:#fff;font-family:var(--en);font-style:italic;
+  font-size:13px;letter-spacing:.3em;writing-mode:vertical-rl;padding-bottom:78px}
+.scroll::after{content:"";position:absolute;left:50%;bottom:0;width:1px;height:64px;background:#fff;
+  animation:drip 2.2s ease-in-out infinite;transform-origin:top}
+@keyframes drip{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* ===== 導入文 ===== */
+.intro{text-align:center}
+.intro p{font-family:var(--serif);font-size:clamp(17px,2vw,21px);line-height:2.5;letter-spacing:.16em}
+.intro .rose{color:var(--rose-deep)}
+
+/* ===== メニュー(2サービス)===== */
+.menu-item{display:grid;grid-template-columns:1.15fr .85fr;gap:0;align-items:stretch;margin-bottom:96px}
+.menu-item:last-child{margin-bottom:0}
+.menu-item .photo{position:relative;min-height:480px}
+.menu-item .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.menu-item .photo .cap{position:absolute;left:18px;bottom:14px;color:#fff;font-family:var(--en);font-style:italic;
+  font-size:14px;letter-spacing:.2em;text-shadow:0 1px 12px rgb(46 42 38/.6)}
+.menu-item .body{background:#fff;padding:56px 52px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.menu-item.rev{grid-template-columns:.85fr 1.15fr}
+.menu-item.rev .photo{order:2}
+.menu-item .label{font-family:var(--en);font-style:italic;font-size:15px;letter-spacing:.26em;margin-bottom:14px}
+.menu-item.yoga .label{color:var(--rose-deep)}
+.menu-item.este .label{color:var(--gold-deep)}
+.menu-item h3{font-family:var(--serif);font-weight:600;font-size:clamp(24px,2.8vw,32px);letter-spacing:.12em;line-height:1.7}
+.menu-item h3 small{display:block;font-size:14px;letter-spacing:.18em;color:var(--ink-soft);margin-bottom:6px;font-family:var(--sans);font-weight:500}
+.menu-item .desc{margin-top:18px;font-size:15.5px;color:var(--ink-soft)}
+.points{margin:24px 0 30px;list-style:none}
+.points li{display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--rule);font-size:15.5px}
+.points li::before{content:"—";flex:none}
+.menu-item.yoga .points li::before{color:var(--rose)}
+.menu-item.este .points li::before{color:var(--gold)}
+.points b{font-weight:700}
+.menu-cta{display:flex;flex-wrap:wrap;gap:12px}
+.menu-cta .btn{min-height:52px;font-size:15px;padding:8px 26px}
+.menu-note{margin-top:14px;font-size:13.5px;color:var(--ink-soft)}
+/* 写真上の縦ラベル */
+.menu-item .photo::before{content:attr(data-jp);position:absolute;top:22px;left:18px;z-index:2;
+  writing-mode:vertical-rl;font-family:var(--serif);color:#fff;font-size:19px;letter-spacing:.32em;
+  border-left:1px solid #ffffff99;padding-left:12px;text-shadow:0 1px 12px rgb(46 42 38/.6)}
+
+/* ===== お客様の声 ===== */
+.voice{background:#fff}
+.voice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.vcard{padding:40px 36px;border-left:1px solid var(--rule)}
+.vcard:first-child{border-left:none}
+.vcard .q{font-family:var(--en);font-size:54px;line-height:.6;color:var(--rose);display:block;margin-bottom:18px}
+.vcard p{font-size:15px;color:var(--ink);line-height:2}
+.vcard .who{margin-top:18px;font-size:13px;color:var(--ink-soft);letter-spacing:.1em}
+.vcard .who b{color:var(--gold-deep);font-family:var(--en);font-style:italic;font-weight:500;letter-spacing:.16em}
+.gnote{text-align:center;margin-top:44px;font-size:14.5px;letter-spacing:.12em}
+.gnote b{font-family:var(--en);font-style:normal;font-size:24px;color:var(--gold-deep);margin-inline:6px}
+
+/* ===== 流れ ===== */
+.flow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.fstep{text-align:center}
+.fstep .num{font-family:var(--en);font-style:italic;font-size:46px;color:var(--gold-deep);line-height:1}
+.fstep .num::after{content:"";display:block;width:1px;height:30px;background:var(--gold);margin:14px auto}
+.fstep .pic{aspect-ratio:4/3;overflow:hidden;margin-bottom:18px}
+.fstep .pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.fstep:hover .pic img{transform:scale(1.04)}
+.fstep .pic.line-pic{background:linear-gradient(135deg,#06C755,#04A848);display:flex;align-items:center;justify-content:center}
+.fstep .pic.line-pic span{color:#fff;font-family:var(--en);font-size:30px;letter-spacing:.12em;border:1px solid #ffffff88;padding:8px 26px}
+.fstep h3{font-family:var(--serif);font-size:19px;letter-spacing:.14em;margin-bottom:8px}
+.fstep p{font-size:14.5px;color:var(--ink-soft);line-height:1.9}
+
+/* ===== Instagram ===== */
+.ig-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:880px;margin-inline:auto}
+.ig-card{position:relative;overflow:hidden;display:block}
+.ig-card img{aspect-ratio:16/10;object-fit:cover;width:100%;transition:transform .5s ease}
+.ig-card:hover img{transform:scale(1.05)}
+.ig-card .veil{position:absolute;inset:0;background:linear-gradient(185deg,transparent 45%,rgb(46 42 38/.72))}
+.ig-card .meta{position:absolute;left:24px;bottom:18px;color:#fff;z-index:2}
+.ig-card .meta .en{color:#EBD9B8;margin-bottom:2px;font-size:13px}
+.ig-card .meta h3{font-family:var(--serif);font-size:19px;letter-spacing:.14em}
+.ig-card .meta p{font-size:13px;opacity:.9}
+
+/* ===== お知らせ ===== */
+.news{max-width:820px;margin-inline:auto}
+.news ul{list-style:none;border-top:1px solid var(--rule)}
+.news li{border-bottom:1px solid var(--rule)}
+.news li a{display:grid;grid-template-columns:auto auto 1fr;gap:20px;align-items:center;padding:20px 6px;font-size:15.5px;transition:padding-left .2s ease}
+.news li a:hover{padding-left:16px;color:var(--rose-deep)}
+.news time{font-family:var(--en);font-style:italic;color:var(--ink-soft);font-size:15px;letter-spacing:.1em}
+.chip{font-size:12px;font-weight:500;padding:2px 12px;letter-spacing:.1em}
+.chip.yoga{color:var(--rose-deep);border:1px solid var(--rose)}
+.chip.este{color:var(--gold-deep);border:1px solid var(--gold)}
+.chip.all{color:var(--ink-soft);border:1px solid var(--rule)}
+.news-more{text-align:center;margin-top:40px}
+
+/* ===== アクセス ===== */
+.access{background:#fff}
+.access-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:start}
+.map-frame{overflow:hidden;aspect-ratio:4/3;background:#E8E0D4}
+.map-frame iframe{width:100%;height:100%;border:0;display:block}
+.access dl{display:grid;grid-template-columns:7em 1fr;font-size:15.5px}
+.access dt{font-family:var(--serif);letter-spacing:.16em;color:var(--gold-deep);padding:16px 0;border-bottom:1px solid var(--rule)}
+.access dd{padding:16px 0;border-bottom:1px solid var(--rule)}
+.access dl :nth-last-child(-n+2){border-bottom:none}
+
+/* ===== フッター ===== */
+footer{background:var(--ink);color:#E8E0D4;padding:64px 0 116px;text-align:center}
+footer .logo{color:#fff}
+footer nav{margin-top:26px}
+footer nav ul{justify-content:center;flex-wrap:wrap;gap:14px 28px;font-size:13.5px}
+footer .copy{font-family:var(--en);font-style:italic;font-size:13px;margin-top:30px;color:#9C8F82;letter-spacing:.2em}
+
+/* ===== スマホ固定CTA ===== */
+.fixed-cta{position:fixed;inset-inline:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--rule);border-top:1px solid var(--rule)}
+.fixed-cta .btn{min-height:58px;font-size:14.5px;border:none;width:100%}
+
+/* ===== レスポンシブ ===== */
+@media (max-width:960px){
+  nav,.head-cta{display:none}
+  .menu-btn{display:flex;margin-left:auto;flex-direction:column;gap:5px;background:none;border:none;padding:12px;cursor:pointer}
+  .menu-btn span{width:26px;height:1.5px;background:var(--ink);display:block}
+  .hero{min-height:88vh}
+  .tate{top:9%;right:7%;font-size:clamp(24px,7vw,34px)}
+  .scroll{display:none}
+  .menu-item,.menu-item.rev{grid-template-columns:1fr}
+  .menu-item .photo{min-height:300px;order:0!important}
+  .menu-item .body{padding:40px 26px}
+  .voice-grid{grid-template-columns:1fr}
+  .vcard{border-left:none;border-top:1px solid var(--rule);padding:32px 8px}
+  .vcard:first-child{border-top:none}
+  .flow-grid{grid-template-columns:1fr;gap:48px;max-width:440px;margin-inline:auto}
+  .ig-grid,.access-grid{grid-template-columns:1fr}
+  .sec{padding:76px 0}
+}
+@media (min-width:961px){body{padding-bottom:0}.fixed-cta{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ① ヘッダー -->
+<header>
+  <div class="wrap head-in">
+    <a class="logo" href="#">fit<b>'</b>s<small>HAMMOCK &amp; FITNESS</small></a>
+    <nav aria-label="メインメニュー">
+      <ul>
+        <li><a href="#yoga">ハンモックヨガ</a></li>
+        <li><a href="#este">健康エステ</a></li>
+        <li><a href="#voice">お客様の声</a></li>
+        <li><a href="#flow">体験の流れ</a></li>
+        <li><a href="#access">アクセス</a></li>
+      </ul>
+    </nav>
+    <div class="head-cta">
+      <a class="btn btn-line" href="#yoga">ヨガ体験<span class="ico">LINE</span></a>
+      <a class="btn btn-hp" href="#este">エステ予約</a>
+    </div>
+    <button class="menu-btn" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ② ヒーロー:全面写真+縦書き -->
+<section class="hero">
+  <div class="hero-bg">
+    <!-- IMAGE: ヒーロー(レッスンや布の写真。静かで美しい1枚を) -->
+    <img src="https://images.unsplash.com/photo-1738681172508-12b39b19ffd2?auto=format&fit=crop&w=2000&q=72" alt="布に身をゆだねるエアリアルヨガ">
+  </div>
+  <p class="tate">ふわりと浮いて、<br>心とからだを、ほどく。<span class="small">― 多治見・ハンモックヨガと健康エステ ―</span></p>
+  <span class="scroll" aria-hidden="true">scroll</span>
+  <div class="wrap hero-foot">
+    <span class="en">fit's — Hammock Yoga &amp; Esthetic, Tajimi</span>
+    <p class="lead">整体師が考えたハンモックヨガと、深層までとどく健康エステ。20代から90代まで、それぞれのペースで。</p>
+    <div class="hero-cta">
+      <a class="btn btn-line" href="#yoga">ヨガ体験を予約する<span class="ico">LINE</span></a>
+      <a class="btn btn-hp" href="#este">エステを予約する</a>
+    </div>
+    <div class="hero-stat">
+      <strong>92<span class="u">%</span></strong>
+      <p>肩こり・腰痛 お客様改善率<br>Google クチコミ ★5.0</p>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 導入文 -->
+<section class="sec intro">
+  <div class="washi" aria-hidden="true">
+    <!-- IMAGE: 透かし背景 -->
+    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1600&q=55" alt="">
+  </div>
+  <div class="wrap">
+    <span class="en">Concept</span>
+    <p>がんばらなくて、いい。<br>布にゆだねて、機械にまかせて。<br><span class="rose">毎日を、明るく楽しく過ごす</span>からだを、ここから。</p>
+  </div>
+</section>
+
+<!-- ④ メニュー:ハンモックヨガ -->
+<section class="sec" id="yoga" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">Our Menu</span>
+      <h2>ふたつの整えかた</h2>
+      <span class="bar"></span>
+    </div>
+
+    <article class="menu-item yoga">
+      <div class="photo" data-jp="動いて、ほどく">
+        <!-- IMAGE: ヨガのメイン写真 -->
+        <img src="https://images.unsplash.com/photo-1578882113036-761708189373?auto=format&fit=crop&w=1400&q=72" alt="ハンモックヨガのレッスン">
+        <span class="cap">Hammock Yoga</span>
+      </div>
+      <div class="body">
+        <span class="label">Menu 01 — Hammock Yoga</span>
+        <h3><small>整体師が考えた</small>ハンモック × ヨガ</h3>
+        <p class="desc">布に体をあずけることで、力みなく伸びる新感覚のヨガ。痛みやコリと向き合ってきた整体師が、独自に組み立てました。</p>
+        <ul class="points">
+          <li><b>整体師考案</b>のオリジナルレッスン</li>
+          <li>運動量別クラスで <b>20〜90代</b> まで安心</li>
+          <li>楽しいから続く。<b>2年以上</b>通う方も多数</li>
+        </ul>
+        <div class="menu-cta">
+          <a class="btn btn-line" href="#">LINEで体験予約</a>
+          <a class="btn" href="#">スケジュール</a>
+          <a class="btn" href="#">料金</a>
+        </div>
+        <p class="menu-note">※ ご予約・ご質問は LINE からどうぞ。</p>
+      </div>
+    </article>
+
+    <!-- ⑤ メニュー:健康エステ -->
+    <article class="menu-item este rev" id="este">
+      <div class="photo" data-jp="ゆだねて、ほぐす">
+        <!-- IMAGE: エステのメイン写真 -->
+        <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=1400&q=72" alt="エステ施術の様子">
+        <span class="cap">Esthetic</span>
+      </div>
+      <div class="body">
+        <span class="label">Menu 02 — Esthetic</span>
+        <h3><small>マシンで深層までアプローチ</small>fit's 健康エステ</h3>
+        <p class="desc">高周波マシンが、手の届かない深層までやさしくほぐします。名古屋の人気ブライダルエステサロン「アールグレー」オーナー監修。</p>
+        <ul class="points">
+          <li>深層からほぐすから <b>効果が持続</b></li>
+          <li>名古屋の<b>人気サロン監修</b>の確かな技術</li>
+          <li>コリ・ハリが整い <b>ラインが引き締まる</b></li>
+        </ul>
+        <div class="menu-cta">
+          <a class="btn btn-hp" href="#">ホットペッパーで予約</a>
+          <a class="btn btn-line" href="#">LINEで予約・相談</a>
+          <a class="btn" href="#">料金</a>
+        </div>
+        <p class="menu-note">※ ホットペッパーと LINE、どちらからでもご予約いただけます。</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ⑥ お客様の声 -->
+<section class="voice sec" id="voice">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">Voice</span>
+      <h2>お客様の声</h2>
+      <span class="bar"></span>
+    </div>
+    <div class="voice-grid">
+      <!-- 文章はダミーです。実際のお客様の声に差し替えてください -->
+      <div class="vcard"><span class="q">“</span>
+        <p>月に一度は整体に通っていたほどの肩こりが、ここに通いはじめてからすっかり楽になりました。(ダミー)</p>
+        <div class="who"><b>Yoga</b> | 50代・女性</div></div>
+      <div class="vcard"><span class="q">“</span>
+        <p>はじめてでも丁寧に教えていただけて安心。力を使わず逆さまのポーズができて、体が軽くなりました。(ダミー)</p>
+        <div class="who"><b>Trial</b> | 30代・女性</div></div>
+      <div class="vcard"><span class="q">“</span>
+        <p>痩身マシンで肩まわりの印象が変わってきました。スタッフの方が話しやすく、通うのが楽しみです。(ダミー)</p>
+        <div class="who"><b>Esthetic</b> | 40代・女性</div></div>
+    </div>
+    <p class="gnote">Google クチコミ<b>5.0</b>★ をいただいています</p>
+  </div>
+</section>
+
+<!-- ⑦ 体験までの流れ -->
+<section class="sec" id="flow">
+  <div class="washi" aria-hidden="true">
+    <!-- IMAGE: 透かし背景 -->
+    <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=1600&q=55" alt="">
+  </div>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">Flow</span>
+      <h2>体験までの流れ</h2>
+      <span class="bar"></span>
+    </div>
+    <div class="flow-grid">
+      <div class="fstep">
+        <span class="num">01</span>
+        <div class="pic line-pic"><span>LINE</span></div>
+        <h3>LINEか電話で予約</h3>
+        <p>ご希望の日時とメニューを送るだけ。ご質問もお気軽に。</p>
+      </div>
+      <div class="fstep">
+        <span class="num">02</span>
+        <div class="pic">
+          <!-- IMAGE: カウンセリング・店内写真 -->
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=68" alt="カウンセリング">
+        </div>
+        <h3>ご来店・カウンセリング</h3>
+        <p>お体の状態をうかがい、合うレッスン・コースをご案内します。</p>
+      </div>
+      <div class="fstep">
+        <span class="num">03</span>
+        <div class="pic">
+          <!-- IMAGE: 体験中の写真 -->
+          <img src="https://images.unsplash.com/photo-1620279154913-75ac25085f2b?auto=format&fit=crop&w=900&q=68" alt="体験の様子">
+        </div>
+        <h3>体験スタート</h3>
+        <p>動きやすい服装でどうぞ。持ち物は予約時にご案内します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧ Instagram -->
+<section class="sec" style="padding-top:30px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">Instagram</span>
+      <h2>日々の風景</h2>
+      <span class="bar"></span>
+    </div>
+    <div class="ig-grid">
+      <a class="ig-card" href="#">
+        <!-- IMAGE: ヨガIGイメージ -->
+        <img src="https://images.unsplash.com/photo-1578882113036-761708189373?auto=format&fit=crop&w=1000&q=68" alt="">
+        <div class="veil"></div>
+        <div class="meta"><span class="en">@fits_yoga</span><h3>ハンモックヨガ</h3><p>レッスンの様子をご覧いただけます</p></div>
+      </a>
+      <a class="ig-card" href="#">
+        <!-- IMAGE: エステIGイメージ -->
+        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1000&q=68" alt="">
+        <div class="veil"></div>
+        <div class="meta"><span class="en">@fits_esthetic</span><h3>健康エステ</h3><p>施術風景もご覧いただけます</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ⑨ お知らせ -->
+<section class="sec" id="news" style="padding-top:30px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">News &amp; Blog</span>
+      <h2>お知らせ・ブログ</h2>
+      <span class="bar"></span>
+    </div>
+    <div class="news">
+      <ul>
+        <li><a href="#"><time>2026.06.01</time><span class="chip yoga">ヨガ</span>6月のレッスンスケジュールを公開しました</a></li>
+        <li><a href="#"><time>2026.05.20</time><span class="chip este">エステ</span>初回限定の体験コースがはじまりました</a></li>
+        <li><a href="#"><time>2026.05.02</time><span class="chip all">お知らせ</span>ゴールデンウィークの営業について</a></li>
+      </ul>
+      <div class="news-more"><a class="btn" href="#">記事一覧へ</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑩ アクセス(実データ:要確認) -->
+<section class="access sec" id="access">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">Access</span>
+      <h2>アクセス・営業時間</h2>
+      <span class="bar"></span>
+    </div>
+    <div class="access-grid">
+      <div class="map-frame">
+        <iframe title="fit'sの地図(多治見市大日町)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=35.336407,137.124088&z=17&hl=ja&output=embed"></iframe>
+      </div>
+      <dl>
+        <dt>店舗名</dt><dd>fit's[フィッツ] ハンモック&amp;フィットネス</dd>
+        <dt>住所</dt><dd>〒507-0032 岐阜県多治見市大日町50-1 ヤマセビル2F<br><small>JR多治見駅から徒歩すぐ</small></dd>
+        <dt>営業時間</dt><dd>9:30〜20:00(火・木は20:30まで/日曜は14:00まで)</dd>
+        <dt>電話</dt><dd>0120-890-525</dd>
+        <dt>ご予約</dt><dd>LINE/ホットペッパー(エステ)/お電話</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ⑪ フッター -->
+<footer>
+  <div class="wrap">
+    <span class="logo">fit<b>'</b>s<small style="color:#9C8F82">HAMMOCK &amp; FITNESS</small></span>
+    <nav aria-label="フッターメニュー">
+      <ul>
+        <li><a href="#yoga">ハンモックヨガ</a></li>
+        <li><a href="#este">健康エステ</a></li>
+        <li><a href="#">料金</a></li>
+        <li><a href="#">スタッフ</a></li>
+        <li><a href="#news">ブログ</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+        <li><a href="#">プライバシーポリシー</a></li>
+      </ul>
+    </nav>
+    <p class="copy">© fit's Hammock &amp; Fitness</p>
+  </div>
+</footer>
+
+<!-- スマホ用 固定予約バー -->
+<div class="fixed-cta">
+  <a class="btn btn-line" href="#yoga">ヨガ体験(LINE)</a>
+  <a class="btn btn-hp" href="#este">エステ予約</a>
+</div>
+
+</body>
+</html>
