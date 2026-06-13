@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fit's サイト仕様チェックリスト|必要ページ・必要要素の整理シート</title>
+<!--
+  ============================================================
+  fit's ウェブサイト 仕様決めチェックリスト(意思決定シート)
+  ------------------------------------------------------------
+  目的:
+    トップのデザインA/B案・C〜G案を見比べながら、
+    「どんなページが必要か」「各ページにどんな要素を載せるか」
+    を抜け漏れなく決めるための資料です。
+  使い方:
+    ・各項目のチェックは自動で保存されます(この端末のブラウザ内に保存)。
+    ・右上の「印刷 / PDF保存」で、紙やPDFで打合せにも使えます。
+    ・「必須 / 推奨 / 任意」のラベルで優先度の目安をつけています。
+    ・空欄のメモ欄に、決めたこと・宿題を書き込めます(同じく自動保存)。
+  ※ このファイルはデザインではなく、仕様を固めるための作業用シートです。
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --base:#FBF8F4; --paper:#fff; --ink:#33302C; --ink-soft:#736A62;
+  --accent:#E8657D; --accent-deep:#C94A63; --gold:#A98B5F;
+  --line:#E7DED3; --line2:#F0E9DF;
+  --ok:#3F9D6B; --okbg:#E8F4ED;
+  --must:#C94A63; --mustbg:#FBEDF0;
+  --rec:#A9772F; --recbg:#F8EFDF;
+  --opt:#6E7B8A; --optbg:#EDF1F5;
+  --font-display:"Zen Maru Gothic",sans-serif;
+  --font-body:"Zen Kaku Gothic New",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--base);color:var(--ink);
+  font-size:15.5px;line-height:1.85;-webkit-font-smoothing:antialiased}
+a{color:var(--accent-deep)}
+.wrap{max-width:980px;margin-inline:auto;padding-inline:22px}
+
+/* ===== ヘッダー ===== */
+header{background:linear-gradient(120deg,#fff,#FBEDF0 65%,#F8EFDF);
+  border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30;backdrop-filter:blur(8px)}
+.head-in{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:16px 0}
+.head-in .ttl{font-family:var(--font-display);font-weight:900;font-size:clamp(19px,2.6vw,26px);line-height:1.4}
+.head-in .ttl small{display:block;font-size:12.5px;font-weight:500;color:var(--ink-soft);letter-spacing:.04em}
+.head-tools{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}
+.tbtn{font-family:var(--font-display);font-weight:700;font-size:13.5px;border:1.5px solid var(--line);
+  background:#fff;color:var(--ink);border-radius:999px;padding:8px 18px;cursor:pointer;transition:.15s}
+.tbtn:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgb(51 48 44/.12)}
+.tbtn.print{border-color:var(--accent);color:var(--accent-deep)}
+
+/* 進捗バー */
+.progress-wrap{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.progress-in{display:flex;align-items:center;gap:14px;padding:10px 0}
+.bar{flex:1;height:12px;border-radius:999px;background:var(--line2);overflow:hidden}
+.bar > i{display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .4s ease}
+.progress-in b{font-family:var(--font-display);font-size:14px;white-space:nowrap}
+.progress-in b span{color:var(--accent-deep)}
+
+/* ===== イントロ ===== */
+.lead{background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  padding:24px 26px;margin:26px 0 8px;box-shadow:0 8px 22px rgb(51 48 44/.05)}
+.lead h2{font-family:var(--font-display);font-weight:900;font-size:20px;margin-bottom:8px}
+.lead p{font-size:14.5px;color:var(--ink-soft)}
+.lead .how{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.lead .how div{background:var(--base);border-radius:12px;padding:12px 14px;font-size:13.5px}
+.lead .how b{font-family:var(--font-display);color:var(--accent-deep);display:block;margin-bottom:2px}
+
+/* 凡例 */
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 6px}
+.tag{font-family:var(--font-display);font-weight:700;font-size:12px;border-radius:999px;padding:3px 12px}
+.tag.must{background:var(--mustbg);color:var(--must)}
+.tag.rec{background:var(--recbg);color:var(--rec)}
+.tag.opt{background:var(--optbg);color:var(--opt)}
+
+/* ===== セクション(チェックリスト群)===== */
+.block{background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  margin:18px 0;overflow:hidden;box-shadow:0 8px 22px rgb(51 48 44/.05)}
+.block > h2{font-family:var(--font-display);font-weight:900;font-size:18.5px;
+  padding:18px 24px;display:flex;align-items:center;gap:12px;
+  background:linear-gradient(90deg,#FBEDF0,#fff);border-bottom:1px solid var(--line)}
+.block > h2 .n{font-family:var(--font-body);font-weight:700;font-size:14px;color:#fff;
+  background:var(--accent);min-width:30px;height:30px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;flex:none}
+.block > h2 .mini{margin-left:auto;font-family:var(--font-body);font-weight:500;font-size:12.5px;color:var(--ink-soft)}
+.block .intro-row{padding:14px 24px 2px;font-size:13.5px;color:var(--ink-soft)}
+.list{padding:10px 24px 22px}
+
+/* チェック項目 */
+.item{display:flex;gap:14px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line2)}
+.item:last-child{border-bottom:none}
+.item input[type=checkbox]{appearance:none;-webkit-appearance:none;flex:none;margin-top:3px;
+  width:22px;height:22px;border:2px solid var(--line);border-radius:7px;background:#fff;cursor:pointer;transition:.15s;position:relative}
+.item input[type=checkbox]:hover{border-color:var(--accent)}
+.item input[type=checkbox]:checked{background:var(--ok);border-color:var(--ok)}
+.item input[type=checkbox]:checked::after{content:"";position:absolute;left:6px;top:2px;
+  width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(42deg)}
+.item input[type=checkbox]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.item label{cursor:pointer;flex:1}
+.item .t{font-weight:700;font-family:var(--font-display)}
+.item .d{display:block;font-size:13px;color:var(--ink-soft);font-weight:400;line-height:1.7;margin-top:1px}
+.item input:checked + label .t{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:var(--line)}
+.item .tag{align-self:flex-start;margin-top:2px}
+
+/* 表(早見表) */
+.table-scroll{overflow-x:auto;padding:6px 24px 24px}
+table.compare{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
+table.compare th,table.compare td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+table.compare thead th{background:#FBEDF0;font-family:var(--font-display);font-weight:700}
+table.compare tbody th{background:var(--base);font-family:var(--font-display);white-space:nowrap}
+table.compare .key{color:var(--accent-deep);font-weight:700}
+
+/* メモ欄 */
+.memo{padding:6px 24px 24px}
+.memo label{font-family:var(--font-display);font-weight:700;font-size:14px;display:block;margin-bottom:8px}
+.memo textarea{width:100%;min-height:96px;border:1.5px solid var(--line);border-radius:12px;
+  padding:12px 14px;font-family:var(--font-body);font-size:14px;line-height:1.8;resize:vertical;background:#FFFDFB}
+.memo textarea:focus{outline:none;border-color:var(--accent)}
+
+/* 意思決定メモ(大) */
+.decisions .row{display:grid;grid-template-columns:1fr;gap:8px;padding:12px 0;border-bottom:1px dashed var(--line2)}
+.decisions .row:last-child{border-bottom:none}
+.decisions .q{font-family:var(--font-display);font-weight:700}
+.decisions input.fill{border:none;border-bottom:1.5px dashed var(--line);background:transparent;
+  font-family:var(--font-body);font-size:14px;padding:6px 4px;width:100%}
+.decisions input.fill:focus{outline:none;border-bottom-color:var(--accent)}
+
+footer{text-align:center;color:var(--ink-soft);font-size:12.5px;padding:30px 0 60px}
+.reset{background:none;border:none;color:var(--ink-soft);text-decoration:underline;cursor:pointer;font-size:12.5px}
+
+/* ===== 印刷 ===== */
+@media print{
+  body{background:#fff;font-size:11.5px}
+  header,.progress-wrap,.head-tools{position:static}
+  .head-tools,.reset{display:none}
+  .block,.lead{box-shadow:none;break-inside:avoid;border-color:#ccc}
+  .item input[type=checkbox]{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  a{color:var(--ink)}
+}
+@media (max-width:560px){
+  .head-in .ttl{font-size:19px}
+  .block > h2{font-size:16px;padding:14px 16px}
+  .list,.intro-row,.memo,.table-scroll{padding-inline:16px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap head-in">
+    <div class="ttl">サイト仕様 チェックリスト
+      <small>fit's ハンモック&amp;フィットネス|必要なページと要素を決めるシート</small>
+    </div>
+    <div class="head-tools">
+      <button class="tbtn print" onclick="window.print()">🖨 印刷 / PDF保存</button>
+    </div>
+  </div>
+</header>
+
+<div class="progress-wrap">
+  <div class="wrap progress-in">
+    <span class="bar"><i id="barFill"></i></span>
+    <b><span id="doneCount">0</span> / <span id="totalCount">0</span> 完了</b>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- イントロ -->
+  <div class="lead">
+    <h2>このシートの目的</h2>
+    <p>トップのデザイン案(A〜G)を見比べながら、<b>「どんなページが必要か」「各ページに何を載せるか」</b>を抜け漏れなく決めるための作業用シートです。決まった項目からチェックを入れていくと、仕様が自然に固まります。</p>
+    <div class="how">
+      <div><b>① 自動保存</b>チェックとメモはこの端末のブラウザに自動保存されます。閉じても残ります。</div>
+      <div><b>② 優先度</b><span class="tag must">必須</span><span class="tag rec">推奨</span><span class="tag opt">任意</span> の3段階で目安を表示。</div>
+      <div><b>③ 印刷OK</b>右上のボタンで紙・PDFに。打合せ資料としてそのまま使えます。</div>
+      <div><b>④ デザイン連携</b>最後の「デザイン案 早見表」で、A〜G案の向き・おすすめ用途を比較できます。</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="tag must">必須</span><span style="font-size:12.5px;color:var(--ink-soft)">なくては困る</span>
+    <span class="tag rec">推奨</span><span style="font-size:12.5px;color:var(--ink-soft)">あると効果大</span>
+    <span class="tag opt">任意</span><span style="font-size:12.5px;color:var(--ink-soft)">余力があれば</span>
+  </div>
+
+  <!-- ============ ① サイトのゴール ============ -->
+  <section class="block" data-block>
+    <h2><span class="n">1</span>まず決める:サイトのゴール<span class="mini">最初にここを揃えると判断が早い</span></h2>
+    <div class="intro-row">「何のためのサイトか」を1つに絞ると、各ページ・各要素の要・不要が一気に決まります。</div>
+    <div class="list">
+      <div class="item"><input type="checkbox" id="g1"><label for="g1"><span class="t">一番の目的を1つ決める</span><span class="d">例:体験予約を増やす / 認知を広げる / 既存のお客様の連絡窓口。fit's は「体験予約(LINE・ホットペッパー)獲得」が軸になりそう。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="g2"><label for="g2"><span class="t">主なターゲットを言葉にする</span><span class="d">例:多治見近郊の20〜90代女性、肩こり・腰痛が気になる方、運動が苦手な方。誰に向けた言葉・写真にするかの基準になる。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="g3"><label for="g3"><span class="t">ゴールにつながる行動(KPI)を決める</span><span class="d">例:LINE友だち追加・体験予約・電話タップ・ホットペッパー遷移。トップの一番目立つボタンをこれに合わせる。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="g4"><label for="g4"><span class="t">ヨガとエステ、どちらを主役にするか</span><span class="d">同列に2本立てか、ヨガ主役か。トップの構成(入口の見せ方)が変わる。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="g5"><label for="g5"><span class="t">デザインの方向性(雰囲気)を1つ選ぶ</span><span class="d">親しみ/上質/癒やし/洗練/今っぽい/高級感 など。最後の早見表でA〜G案と照らし合わせる。</span></label><span class="tag rec">推奨</span></div>
+    </div>
+    <div class="memo"><label for="m1">メモ(ゴール・ターゲット・主役の決定事項)</label><textarea id="m1" placeholder="例:目的=体験予約の増加 / ターゲット=多治見近郊の40〜70代女性 / 主役=ハンモックヨガ / 雰囲気=ナチュラルで親しみやすく…"></textarea></div>
+  </section>
+
+  <!-- ============ ② ページ構成 ============ -->
+  <section class="block" data-block>
+    <h2><span class="n">2</span>ページ構成:どのページを作るか<span class="mini">サイトマップ</span></h2>
+    <div class="intro-row">「トップ1枚で完結」か「ページを分ける」か。情報量と更新のしやすさで決めます。小規模なら太字の必須+推奨だけでも十分成立します。</div>
+    <div class="list">
+      <div class="item"><input type="checkbox" id="p1"><label for="p1"><span class="t">トップページ</span><span class="d">全体の入口。各サービス・実績・予約導線・アクセスへの分岐。A〜G案はすべてこのトップの見せ方の比較。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="p2"><label for="p2"><span class="t">ハンモックヨガ 詳細ページ</span><span class="d">レッスンの特徴・4種メニュー・対象・持ち物・よくある質問。トップより深く伝える。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="p3"><label for="p3"><span class="t">健康エステ 詳細ページ</span><span class="d">マシン・コース内容・監修(アールグレー)・ビフォーアフターの考え方・所要時間。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="p4"><label for="p4"><span class="t">料金ページ(または各詳細内に明記)</span><span class="d">体験料金・通常料金・回数券/月会費・初回限定。料金が分かるかは予約の最重要要素。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="p5"><label for="p5"><span class="t">スケジュール / 予約ページ</span><span class="d">レッスン時間割。LINE・ホットペッパー・電話への導線をまとめる。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="p6"><label for="p6"><span class="t">アクセス / 店舗情報ページ</span><span class="d">地図・住所・駐車場・営業時間・電話。トップにも要約を置く。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="p7"><label for="p7"><span class="t">お客様の声 / 実績ページ</span><span class="d">口コミ・改善事例・Googleクチコミ。信頼づくりの核。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="p8"><label for="p8"><span class="t">スタッフ紹介ページ</span><span class="d">人柄が伝わると来店ハードルが下がる。資格・経歴も。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="p9"><label for="p9"><span class="t">お知らせ / ブログ(更新型)</span><span class="d">スケジュール変更・キャンペーン・コラム。更新がSEOにも効く。運用できる範囲で。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="p10"><label for="p10"><span class="t">よくある質問(FAQ)</span><span class="d">「体がかたくても大丈夫?」「年齢制限は?」「服装は?」など不安を先回りで解消。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="p11"><label for="p11"><span class="t">お問い合わせフォーム</span><span class="d">LINEが主でも、電話以外の問い合わせ手段として用意。送信先メール・自動返信を確認。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="p12"><label for="p12"><span class="t">プライバシーポリシー</span><span class="d">フォームや計測タグを使うなら必須。個人情報の取扱いを明記。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="p13"><label for="p13"><span class="t">特定商取引法の表記</span><span class="d">回数券・物販・オンライン決済など販売を行う場合に必要。</span></label><span class="tag opt">任意</span></div>
+      <div class="item"><input type="checkbox" id="p14"><label for="p14"><span class="t">初めての方へ(導線まとめページ)</span><span class="d">体験の流れ・持ち物・料金・予約を1ページに。初回の方の不安を一気に解消。</span></label><span class="tag opt">任意</span></div>
+    </div>
+    <div class="memo"><label for="m2">メモ(作るページ・作らないページの決定)</label><textarea id="m2" placeholder="例:今回はトップ+ヨガ詳細+エステ詳細+料金+アクセス+お問い合わせ+ポリシーの7ページで開始。ブログは運用体制を見て第2弾で…"></textarea></div>
+  </section>
+
+  <!-- ============ ③ トップに載せる要素 ============ -->
+  <section class="block" data-block>
+    <h2><span class="n">3</span>トップページに載せる要素<span class="mini">セクション単位</span></h2>
+    <div class="intro-row">上から順に「読み進める導線」を意識。A〜G案はこの要素を並べ替え・見せ方を変えたものです。必要なものを選び、順番を決めましょう。</div>
+    <div class="list">
+      <div class="item"><input type="checkbox" id="t1"><label for="t1"><span class="t">ファーストビュー(キャッチ+メイン写真)</span><span class="d">一番映える写真+「毎日を、明るく楽しく」+ひとことで何の店か。3秒で伝わるか。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="t2"><label for="t2"><span class="t">予約・問い合わせCTAボタン(目立つ位置)</span><span class="d">LINE体験予約 / エステ予約。色・文言・繰り返し配置を決める。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="t3"><label for="t3"><span class="t">2サービスの入口(ヨガ / エステ)</span><span class="d">それぞれの詳細へ。写真カードや左右分割など見せ方は案で比較。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="t4"><label for="t4"><span class="t">実績・数字(改善率92% / クチコミ5.0)</span><span class="d">数字は信頼の近道。根拠(集計方法・期間)も準備しておく。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="t5"><label for="t5"><span class="t">選ばれる理由 / 特徴(各サービス3点)</span><span class="d">整体師考案・シニア歓迎・続く楽しさ / 効果持続・サロン監修・引き締め。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="t6"><label for="t6"><span class="t">レッスンメニュー(4種)</span><span class="d">ハンモック整体・リラックス・椅子エアリアル・美脚美尻。写真+一言説明。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="t7"><label for="t7"><span class="t">お客様の声 / Googleクチコミ</span><span class="d">実名/年代・サービス名つきだと信頼度が上がる。掲載許可を確認。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="t8"><label for="t8"><span class="t">体験までの流れ(3ステップ)</span><span class="d">予約→来店・カウンセリング→体験。初めての方の不安を解消。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="t9"><label for="t9"><span class="t">スタッフ紹介</span><span class="d">人柄・資格。表示人数は調整可(現テンプレは data-visible で制御)。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="t10"><label for="t10"><span class="t">料金の目安・体験価格</span><span class="d">トップに概算でも出すと離脱が減る。詳細は料金ページへ。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="t11"><label for="t11"><span class="t">Instagram 連携</span><span class="d">日々の様子。埋め込みか、リンクのみか。アカウントURLを準備。</span></label><span class="tag opt">任意</span></div>
+      <div class="item"><input type="checkbox" id="t12"><label for="t12"><span class="t">お知らせ / 新着(3件程度)</span><span class="d">スケジュール・キャンペーン。更新が止まると逆効果なので運用前提で。</span></label><span class="tag opt">任意</span></div>
+      <div class="item"><input type="checkbox" id="t13"><label for="t13"><span class="t">アクセス・営業時間・地図(要約)</span><span class="d">Googleマップ埋め込み+住所+時間+電話。トップ下部の定番。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="t14"><label for="t14"><span class="t">フッター(全ページ共通ナビ・SNS・著作権)</span><span class="d">主要ページへのリンク、電話、SNS、プライバシーポリシー。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="t15"><label for="t15"><span class="t">スマホ用 固定予約バー</span><span class="d">画面下に常時表示。LINE/エステ予約をワンタップで(全案に実装済み)。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="t16"><label for="t16"><span class="t">よくある質問(抜粋)</span><span class="d">トップに2〜3問だけ置き、FAQページへ。離脱前の不安解消に。</span></label><span class="tag opt">任意</span></div>
+    </div>
+    <div class="memo"><label for="m3">メモ(トップの掲載要素と並び順)</label><textarea id="m3" placeholder="例:① ファーストビュー ② 数字 ③ ヨガ ④ エステ ⑤ レッスン4種 ⑥ 声 ⑦ 流れ ⑧ スタッフ ⑨ アクセス。Instagramは今回見送り…"></textarea></div>
+  </section>
+
+  <!-- ============ ④ 全ページ共通の要素 ============ -->
+  <section class="block" data-block>
+    <h2><span class="n">4</span>全ページ共通で必要な要素<span class="mini">土台</span></h2>
+    <div class="list">
+      <div class="item"><input type="checkbox" id="c1"><label for="c1"><span class="t">ヘッダー(ロゴ+ナビ+予約ボタン)</span><span class="d">どのページからでも主要ページと予約に行ける。スマホはハンバーガーメニュー。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="c2"><label for="c2"><span class="t">グローバルナビの項目を確定</span><span class="d">例:ヨガ/エステ/料金/お客様の声/アクセス。多すぎないように5〜6個に絞る。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="c3"><label for="c3"><span class="t">予約・電話・LINEへの導線(各ページ)</span><span class="d">どのページでも迷わず予約できる。電話番号 0120-890-525 はタップ発信に。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="c4"><label for="c4"><span class="t">ページタイトル・説明文(SEO)</span><span class="d">各ページの &lt;title&gt; と説明。地域名「多治見」+サービス名を入れる。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="c5"><label for="c5"><span class="t">OGP(SNSシェア時の画像・文言)</span><span class="d">LINE・Instagramで共有された時に正しく表示されるか。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="c6"><label for="c6"><span class="t">ファビコン / ロゴ画像</span><span class="d">ブラウザタブのアイコン、各所のロゴ。データ形式・サイズを準備。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="c7"><label for="c7"><span class="t">パンくず(下層ページ)</span><span class="d">今どこにいるか。ページが増えたら設置。</span></label><span class="tag opt">任意</span></div>
+    </div>
+  </section>
+
+  <!-- ============ ⑤ 予約導線の意思決定 ============ -->
+  <section class="block" data-block>
+    <h2><span class="n">5</span>予約導線の決定<span class="mini">どこへ流すか</span></h2>
+    <div class="intro-row">fit's は LINE・ホットペッパー(エステ)・電話の3つ。どれを主役にして、どこに何を置くかを決めます。</div>
+    <div class="list">
+      <div class="item"><input type="checkbox" id="b1"><label for="b1"><span class="t">ヨガの予約は LINE を主役にする</span><span class="d">体験・質問はLINE。友だち追加URL/QRを準備。ボタン文言も統一。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="b2"><label for="b2"><span class="t">エステは ホットペッパー + LINE の併記</span><span class="d">どちらからでも予約可、と明記。ホットペッパーの店舗URLを準備。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="b3"><label for="b3"><span class="t">電話番号をタップ発信に</span><span class="d">0120-890-525。スマホで押すと発信できるリンクに。営業時間も併記。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="b4"><label for="b4"><span class="t">予約ボタンの文言・色を全ページで統一</span><span class="d">「ヨガ体験を予約」「エステを予約」など。LINEは緑、ホットペッパーは橙が定番。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="b5"><label for="b5"><span class="t">予約後の流れ・キャンセル規定を用意</span><span class="d">予約確定の連絡方法、キャンセル期限。トラブル防止に。</span></label><span class="tag opt">任意</span></div>
+    </div>
+    <div class="memo"><label for="m5">メモ(予約URL・QR・主役の決定)</label><textarea id="m5" placeholder="例:LINE友だち追加URL=… / ホットペッパーURL=… / 電話=0120-890-525 / ヨガ=LINE主役、エステ=ホットペッパー主役…"></textarea></div>
+  </section>
+
+  <!-- ============ ⑥ 用意する素材 ============ -->
+  <section class="block" data-block>
+    <h2><span class="n">6</span>用意する素材(原稿・写真など)<span class="mini">これが揃うと完成が早い</span></h2>
+    <div class="intro-row">現在の各デザイン案の写真はすべて差し替え用のフリー素材です。下記が揃うと本番化できます。</div>
+    <div class="list">
+      <div class="item"><input type="checkbox" id="a1"><label for="a1"><span class="t">メイン(ヒーロー)写真 1〜2点</span><span class="d">一番映えるレッスン・施術の横長写真。トップの第一印象を決める。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="a2"><label for="a2"><span class="t">レッスン4種の写真</span><span class="d">ハンモック整体・リラックス・椅子エアリアル・美脚美尻。各1点。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="a3"><label for="a3"><span class="t">エステ施術・サロン空間の写真</span><span class="d">マシン・施術風景・店内。清潔感が伝わるもの。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="a4"><label for="a4"><span class="t">スタッフ顔写真</span><span class="d">人数分。明るい・話しかけやすい印象のもの。掲載可否を確認。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="a5"><label for="a5"><span class="t">ロゴデータ(背景透過)</span><span class="d">ヘッダー・フッター・ファビコン用。PNG/SVG。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="a6"><label for="a6"><span class="t">各サービスの説明原稿</span><span class="d">特徴・対象・効果。誇大表現にならない言い回しで。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="a7"><label for="a7"><span class="t">料金表</span><span class="d">体験・通常・回数券。税込/税抜の明記。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="a8"><label for="a8"><span class="t">お客様の声(掲載許可つき)</span><span class="d">実際の口コミ。年代・サービス名・許可の有無をセットで。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="a9"><label for="a9"><span class="t">改善率92%などの数字の根拠</span><span class="d">集計対象・期間・方法。出せる範囲を確認しておく。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="a10"><label for="a10"><span class="t">地図・住所・営業時間・電話の最終確認</span><span class="d">現在の記載(大日町50-1 ヤマセビル2F / 9:30〜20:00 ほか)が最新か。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="a11"><label for="a11"><span class="t">SNS・予約サービスのURL</span><span class="d">LINE・Instagram・ホットペッパー。</span></label><span class="tag rec">推奨</span></div>
+    </div>
+    <div class="memo"><label for="m6">メモ(素材の手配状況・担当・締切)</label><textarea id="m6" placeholder="例:写真撮影=6月下旬 / 原稿=店長 / 料金表=確定済み / 口コミ許可=3名取得済み…"></textarea></div>
+  </section>
+
+  <!-- ============ ⑦ 信頼・安心 ============ -->
+  <section class="block" data-block>
+    <h2><span class="n">7</span>信頼・安心を高める要素<span class="mini">予約の後押し</span></h2>
+    <div class="list">
+      <div class="item"><input type="checkbox" id="r1"><label for="r1"><span class="t">資格・監修の明示</span><span class="d">整体師考案、名古屋の人気サロン「アールグレー」監修など。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="r2"><label for="r2"><span class="t">料金が明確</span><span class="d">「料金がわからない」は離脱の最大要因。体験価格を前面に。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="r3"><label for="r3"><span class="t">初めての方への配慮を明記</span><span class="d">体がかたくてもOK、年齢層、見学可否、持ち物、服装。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="r4"><label for="r4"><span class="t">表現が薬機法・景表法に配慮</span><span class="d">「治る」「必ず痩せる」等の断定を避ける。改善率は根拠とセットで。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="r5"><label for="r5"><span class="t">第三者評価(Googleクチコミ等)</span><span class="d">★5.0などの客観評価。リンクや件数を添える。</span></label><span class="tag rec">推奨</span></div>
+    </div>
+  </section>
+
+  <!-- ============ ⑧ スマホ・アクセシビリティ・速度 ============ -->
+  <section class="block" data-block>
+    <h2><span class="n">8</span>スマホ・見やすさ・表示速度<span class="mini">来訪者の多くはスマホ</span></h2>
+    <div class="list">
+      <div class="item"><input type="checkbox" id="s1"><label for="s1"><span class="t">スマホで崩れない(全幅・折返し)</span><span class="d">主要スマホ幅で確認。固定予約バーが本文を隠さないか。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="s2"><label for="s2"><span class="t">文字サイズ・コントラストが十分</span><span class="d">シニア層も読みやすい大きさ・色の濃さ。小さすぎる注釈に注意。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="s3"><label for="s3"><span class="t">画像の最適化(軽さ)</span><span class="d">大きすぎる写真は表示を遅くする。書き出しサイズ・遅延読込を確認。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="s4"><label for="s4"><span class="t">タップ要素が押しやすい大きさ</span><span class="d">ボタン高さ44px以上。リンク同士が近すぎない。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="s5"><label for="s5"><span class="t">画像の代替テキスト(alt)</span><span class="d">読み上げ・SEO対応。何の写真か短く記述。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="s6"><label for="s6"><span class="t">動きを控えめにする配慮</span><span class="d">過度なアニメは酔いや見づらさの原因に。OSの「視差を減らす」に対応(全案実装済み)。</span></label><span class="tag opt">任意</span></div>
+    </div>
+  </section>
+
+  <!-- ============ ⑨ 公開前チェック ============ -->
+  <section class="block" data-block>
+    <h2><span class="n">9</span>公開前の最終チェック<span class="mini">ローンチ直前</span></h2>
+    <div class="list">
+      <div class="item"><input type="checkbox" id="l1"><label for="l1"><span class="t">全リンク・ボタンの動作確認</span><span class="d">LINE・電話・地図・各ページ。リンク切れゼロ。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="l2"><label for="l2"><span class="t">フォーム送信テスト</span><span class="d">届くか・自動返信・迷惑メール振り分けを確認。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="l3"><label for="l3"><span class="t">誤字脱字・電話番号・住所の最終確認</span><span class="d">数字と固有名詞は特に念入りに。</span></label><span class="tag must">必須</span></div>
+      <div class="item"><input type="checkbox" id="l4"><label for="l4"><span class="t">主要ブラウザ・スマホ実機で表示確認</span><span class="d">iPhone/Android、Safari/Chrome。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="l5"><label for="l5"><span class="t">アクセス解析の設置</span><span class="d">どのページが見られ、どこから予約されたか把握する。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="l6"><label for="l6"><span class="t">検索エンジンへの登録 / sitemap</span><span class="d">公開後にインデックスを促す。</span></label><span class="tag opt">任意</span></div>
+      <div class="item"><input type="checkbox" id="l7"><label for="l7"><span class="t">Googleビジネスプロフィールとの整合</span><span class="d">営業時間・電話・住所をマップ情報と一致させる。</span></label><span class="tag rec">推奨</span></div>
+    </div>
+  </section>
+
+  <!-- ============ ⑩ デザイン案 早見表 ============ -->
+  <section class="block" data-block>
+    <h2><span class="n">10</span>デザイン案 早見表(A〜G)<span class="mini">方向性の比較</span></h2>
+    <div class="intro-row">同じ内容を、7通りの見せ方で用意しています。上の「サイトのゴール・雰囲気」と照らし合わせて選んでください(各ファイルをブラウザで開いて比較)。</div>
+    <div class="table-scroll">
+      <table class="compare">
+        <thead>
+          <tr><th>案</th><th>方向性</th><th>印象・特徴</th><th>向いている場合</th></tr>
+        </thead>
+        <tbody>
+          <tr><th class="key">A案</th><td>ポップ・親しみ</td><td>丸ゴシック+ピンク、流れる帯・浮かぶバッジなど動きあり。明るく賑やか。</td><td>幅広い年代に親しみやすく。元気・楽しさを前面に。</td></tr>
+          <tr><th class="key">B案</th><td>上質・和モダン</td><td>明朝体+縦書きキャッチ+たっぷり余白。色数を抑え静かに魅せる。</td><td>落ち着いた大人の女性へ。上質感・信頼感を重視。</td></tr>
+          <tr><th class="key">C案</th><td>ナチュラル・ボタニカル</td><td>生成り×若草、有機的な曲線・波形の区切り。やわらかく癒やし系。</td><td>ウェルネス・リラックスの世界観。自然体の心地よさ。</td></tr>
+          <tr><th class="key">D案</th><td>ミニマル・エディトリアル</td><td>白基調+1色アクセント、大きな文字と罫線、雑誌のような構成。</td><td>洗練・都会的に見せたい。写真と余白で魅せる。</td></tr>
+          <tr><th class="key">E案</th><td>ソフト・パステル / グラス</td><td>淡いグラデーション+すりガラスのカード。ふんわり今っぽい。</td><td>若い女性層・SNS世代。やさしく今っぽい雰囲気。</td></tr>
+          <tr><th class="key">F案</th><td>ダーク・ラグジュアリー</td><td>黒×金、ゆったりした余白と上品な動き。プレミアム感。</td><td>エステの高級感・特別感を主役にしたい場合。</td></tr>
+          <tr><th class="key">G案</th><td>フルスクリーン・ストーリー</td><td>全画面写真をスクロールで切り替える没入型。1画面=1メッセージ。</td><td>写真が強い場合。世界観・ブランド体験を重視。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="list" style="padding-top:0">
+      <div class="item"><input type="checkbox" id="d1"><label for="d1"><span class="t">A〜G案を実機(スマホ)でも見比べた</span><span class="d">第一印象はスマホで確認するのがおすすめ。</span></label><span class="tag rec">推奨</span></div>
+      <div class="item"><input type="checkbox" id="d2"><label for="d2"><span class="t">採用する方向性(または組合せ)を1つに絞った</span><span class="d">例:「Cの世界観 × Aの分かりやすい予約導線」など、いいとこ取りも可。</span></label><span class="tag must">必須</span></div>
+    </div>
+    <div class="memo"><label for="m10">メモ(選んだ案・採り入れたい要素)</label><textarea id="m10" placeholder="例:ベースはC案(ナチュラル)。ファーストビューはB案の縦書き、予約ボタンの目立たせ方はA案を採用したい…"></textarea></div>
+  </section>
+
+  <!-- ============ ⑪ 次に決めること ============ -->
+  <section class="block decisions" data-block>
+    <h2><span class="n">11</span>次に決めること(宿題メモ)<span class="mini">打合せ用</span></h2>
+    <div class="list" style="padding-top:6px">
+      <div class="row"><span class="q">採用するデザイン案は?</span><input class="fill" id="q1" placeholder="例:C案ベース + 一部A案"></div>
+      <div class="row"><span class="q">第1弾で公開するページは?</span><input class="fill" id="q2" placeholder="例:トップ/ヨガ/エステ/料金/アクセス/お問い合わせ/ポリシー"></div>
+      <div class="row"><span class="q">予約の主役は?(ヨガ / エステ)</span><input class="fill" id="q3" placeholder="例:ヨガ=LINE、エステ=ホットペッパー"></div>
+      <div class="row"><span class="q">写真撮影の予定は?</span><input class="fill" id="q4" placeholder="例:6月下旬に店舗で撮影"></div>
+      <div class="row"><span class="q">原稿・料金表の担当と締切は?</span><input class="fill" id="q5" placeholder="例:店長が6/30までに用意"></div>
+      <div class="row"><span class="q">公開希望日は?</span><input class="fill" id="q6" placeholder="例:7月中旬"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>fit's ハンモック&amp;フィットネス サイト仕様チェックリスト</p>
+    <p style="margin-top:6px"><button class="reset" id="resetBtn">入力内容をすべてリセット</button></p>
+  </footer>
+</div>
+
+<script>
+/* ------------------------------------------------------------
+   入力(チェック・メモ)を localStorage に自動保存・復元します。
+   保存先キーは要素の id。id を変えると保存内容も別管理になります。
+------------------------------------------------------------ */
+(function(){
+  var KEY = 'fits-spec-checklist-v1';
+  var store = {};
+  try { store = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ store = {}; }
+
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
+
+  // 全入力要素を対象に復元 + 変更監視
+  var fields = document.querySelectorAll('input[type=checkbox], textarea, input.fill');
+  fields.forEach(function(el){
+    var id = el.id; if(!id) return;
+    if(el.type === 'checkbox'){
+      if(store[id] === true) el.checked = true;
+      el.addEventListener('change', function(){ store[id] = el.checked; save(); updateProgress(); });
+    } else {
+      if(typeof store[id] === 'string') el.value = store[id];
+      el.addEventListener('input', function(){ store[id] = el.value; save(); });
+    }
+  });
+
+  // 進捗(チェックボックスの完了数)
+  var checks = document.querySelectorAll('input[type=checkbox]');
+  var barFill = document.getElementById('barFill');
+  var doneCount = document.getElementById('doneCount');
+  var totalCount = document.getElementById('totalCount');
+  totalCount.textContent = checks.length;
+  function updateProgress(){
+    var done = 0;
+    checks.forEach(function(c){ if(c.checked) done++; });
+    doneCount.textContent = done;
+    barFill.style.width = (checks.length ? (done/checks.length*100) : 0) + '%';
+  }
+  updateProgress();
+
+  // リセット
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    if(!confirm('入力したチェックとメモをすべて消去します。よろしいですか?')) return;
+    store = {}; save();
+    fields.forEach(function(el){ if(el.type==='checkbox') el.checked=false; else el.value=''; });
+    updateProgress();
+  });
+})();
+</script>
+</body>
+</html>
