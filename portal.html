@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>fit's デザイン案ポータル|トップページ デザイン一覧</title>
+  <meta name="description" content="fit's ハンモック&フィットネスのトップページ デザイン案（A〜G）と仕様チェックリストにアクセスできるポータルページです。" />
+  <style>
+    :root{
+      --base:#FDFBF8;
+      --paper:#FFFFFF;
+      --ink:#3D3531;
+      --ink-soft:#7A6E66;
+      --line:#EDE6DD;
+      --brown:#6A4A2E;
+      --brown-soft:#A07A60;
+      --container:1120px;
+      --radius:18px;
+      --shadow:0 18px 40px rgba(60,45,30,.10);
+      --shadow-sm:0 8px 20px rgba(60,45,30,.08);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN",
+                   "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+      color:var(--ink);
+      background:var(--base);
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+
+    .container{
+      width:min(var(--container), calc(100% - 40px));
+      margin-inline:auto;
+    }
+
+    /* ===== header ===== */
+    .hero{
+      position:relative;
+      text-align:center;
+      padding: 72px 0 56px;
+      overflow:hidden;
+      background:
+        radial-gradient(1200px 400px at 50% -120px, #fff 0%, rgba(255,255,255,0) 70%),
+        linear-gradient(180deg, #F6EFE6 0%, var(--base) 100%);
+      border-bottom:1px solid var(--line);
+    }
+    .hero .logo{
+      font-weight:800;
+      font-size: clamp(40px, 7vw, 60px);
+      letter-spacing:.01em;
+      line-height:1;
+      color:var(--ink);
+    }
+    .hero .logo span{ color:var(--brown); }
+    .hero .eyebrow{
+      display:inline-block;
+      margin-bottom:18px;
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:.18em;
+      color:var(--brown-soft);
+      border:1px solid #E3D4C2;
+      background:#fff;
+      padding:7px 16px;
+      border-radius:999px;
+    }
+    .hero h1{
+      margin:18px 0 6px;
+      font-size: clamp(20px, 3.4vw, 26px);
+      letter-spacing:.01em;
+    }
+    .hero p{
+      margin:0 auto;
+      max-width:560px;
+      color:var(--ink-soft);
+      font-size:15px;
+    }
+
+    /* ===== section ===== */
+    .section{ padding: 56px 0; }
+    .section-head{
+      display:flex;
+      align-items:baseline;
+      gap:14px;
+      margin-bottom:28px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size:20px;
+      letter-spacing:.02em;
+    }
+    .section-head .count{
+      font-size:13px;
+      color:var(--ink-soft);
+      font-weight:600;
+    }
+    .section-head::after{
+      content:"";
+      flex:1;
+      height:1px;
+      background:var(--line);
+    }
+
+    /* ===== grid of cards ===== */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:26px;
+    }
+
+    .card{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow-sm);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:var(--shadow);
+    }
+
+    /* swatch / preview band */
+    .swatch{
+      position:relative;
+      height:128px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .swatch .letter{
+      font-size:52px;
+      font-weight:800;
+      line-height:1;
+      letter-spacing:.02em;
+    }
+    .swatch .dots{
+      position:absolute;
+      bottom:12px;
+      right:12px;
+      display:flex;
+      gap:6px;
+    }
+    .swatch .dots i{
+      width:14px; height:14px;
+      border-radius:999px;
+      display:block;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.08);
+    }
+
+    .card-body{
+      padding:18px 20px 20px;
+      display:flex;
+      flex-direction:column;
+      flex:1;
+    }
+    .card-body .concept{
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.12em;
+      color:var(--brown-soft);
+      margin-bottom:4px;
+    }
+    .card-body h3{
+      margin:0 0 8px;
+      font-size:18px;
+    }
+    .card-body p{
+      margin:0 0 18px;
+      font-size:13.5px;
+      color:var(--ink-soft);
+      flex:1;
+    }
+    .card-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:11px 16px;
+      border-radius:999px;
+      background:var(--brown);
+      color:#fff;
+      font-weight:700;
+      font-size:14px;
+      box-shadow:0 8px 18px rgba(106,74,46,.22);
+      transition: background .18s ease;
+    }
+    .card:hover .card-cta{ background:#573b24; }
+    .card-cta .arrow{ transition: transform .18s ease; }
+    .card:hover .card-cta .arrow{ transform:translateX(3px); }
+
+    /* full card link overlay */
+    .card-link{
+      position:absolute;
+      inset:0;
+      z-index:1;
+    }
+
+    /* ===== utility / checklist ===== */
+    .util{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+      background:linear-gradient(180deg,#fff, #FBF6EF);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:24px 26px;
+      box-shadow:var(--shadow-sm);
+    }
+    .util .icon{
+      width:54px; height:54px;
+      flex:none;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:#F0E6D7;
+      color:var(--brown);
+      font-size:26px;
+      font-weight:800;
+    }
+    .util .util-text{ flex:1; min-width:220px; }
+    .util .util-text h3{ margin:0 0 4px; font-size:17px; }
+    .util .util-text p{ margin:0; font-size:13.5px; color:var(--ink-soft); }
+    .util .util-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:11px 20px;
+      border-radius:999px;
+      border:2px solid var(--brown);
+      color:var(--brown);
+      font-weight:700;
+      font-size:14px;
+      transition: background .18s ease, color .18s ease;
+    }
+    .util .util-cta:hover{ background:var(--brown); color:#fff; }
+
+    /* ===== footer ===== */
+    .foot{
+      border-top:1px solid var(--line);
+      padding:28px 0 40px;
+      text-align:center;
+      color:var(--ink-soft);
+      font-size:13px;
+    }
+
+    /* ===== responsive ===== */
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px){
+      .grid{ grid-template-columns: 1fr; }
+      .hero{ padding:56px 0 44px; }
+      .section{ padding:44px 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <span class="eyebrow">DESIGN PORTAL</span>
+      <div class="logo">fit<span>'</span>s</div>
+      <h1>トップページ デザイン案 一覧</h1>
+      <p>ハンモック&フィットネスのトップページ デザイン案（A〜G）を比較・確認できます。気になる案のカードからプレビューを開いてください。</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" aria-label="デザイン案一覧">
+      <div class="container">
+        <div class="section-head">
+          <h2>デザイン案</h2>
+          <span class="count">7 案</span>
+        </div>
+
+        <div class="grid">
+
+          <!-- A -->
+          <article class="card">
+            <a class="card-link" href="fits-top-design-a.html" aria-label="A案 スタンダードを開く"></a>
+            <div class="swatch" style="background:#FDFBF8;">
+              <span class="letter" style="color:#6A4A2E;">A</span>
+              <span class="dots" aria-hidden="true">
+                <i style="background:#FDFBF8;"></i><i style="background:#C9B8AA;"></i><i style="background:#FFD9E1;"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="concept">STANDARD</div>
+              <h3>A案 スタンダード</h3>
+              <p>温かみのあるクリームを基調にした、ブランドの基本となる王道レイアウト。</p>
+              <span class="card-cta">プレビューを開く <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+          <!-- B -->
+          <article class="card">
+            <a class="card-link" href="fits-top-design-b.html" aria-label="B案 ゴールド エレガントを開く"></a>
+            <div class="swatch" style="background:#F7F4EF;">
+              <span class="letter" style="color:#A98B5F;">B</span>
+              <span class="dots" aria-hidden="true">
+                <i style="background:#F7F4EF;"></i><i style="background:#A98B5F;"></i><i style="background:#EBD9B8;"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="concept">ELEGANT</div>
+              <h3>B案 エレガント</h3>
+              <p>ベージュ×ゴールドで上品にまとめた、落ち着きと高級感のあるデザイン。</p>
+              <span class="card-cta">プレビューを開く <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+          <!-- C -->
+          <article class="card">
+            <a class="card-link" href="fits-top-design-c.html" aria-label="C案 ナチュラルを開く"></a>
+            <div class="swatch" style="background:#FAF6EC;">
+              <span class="letter" style="color:#7E8A5A;">C</span>
+              <span class="dots" aria-hidden="true">
+                <i style="background:#FAF6EC;"></i><i style="background:#EDF0DE;"></i><i style="background:#B6AF9B;"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="concept">NATURAL</div>
+              <h3>C案 ナチュラル</h3>
+              <p>グリーンとアースカラーで、やわらかく自然体な雰囲気を表現した案。</p>
+              <span class="card-cta">プレビューを開く <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+          <!-- D -->
+          <article class="card">
+            <a class="card-link" href="fits-top-design-d.html" aria-label="D案 エディトリアルを開く"></a>
+            <div class="swatch" style="background:#F4F2EC;">
+              <span class="letter" style="color:#BA4632;">D</span>
+              <span class="dots" aria-hidden="true">
+                <i style="background:#F4F2EC;"></i><i style="background:#BA4632;"></i><i style="background:#181714;"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="concept">EDITORIAL</div>
+              <h3>D案 エディトリアル</h3>
+              <p>雑誌のような余白と力強いアクセントで、洗練された誌面風レイアウト。</p>
+              <span class="card-cta">プレビューを開く <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+          <!-- E -->
+          <article class="card">
+            <a class="card-link" href="fits-top-design-e.html" aria-label="E案 パステルを開く"></a>
+            <div class="swatch" style="background:#FFE2EA;">
+              <span class="letter" style="color:#F26588;">E</span>
+              <span class="dots" aria-hidden="true">
+                <i style="background:#FFE2EA;"></i><i style="background:#F26588;"></i><i style="background:#FF9DB4;"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="concept">PASTEL</div>
+              <h3>E案 パステル</h3>
+              <p>ピンクを中心とした明るいパステルカラーで、親しみやすく華やかな印象。</p>
+              <span class="card-cta">プレビューを開く <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+          <!-- F -->
+          <article class="card">
+            <a class="card-link" href="fits-top-design-f.html" aria-label="F案 ラグジュアリーを開く"></a>
+            <div class="swatch" style="background:#141310;">
+              <span class="letter" style="color:#C8A96A;">F</span>
+              <span class="dots" aria-hidden="true">
+                <i style="background:#1C1A14;"></i><i style="background:#C8A96A;"></i><i style="background:#E0C68C;"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="concept">LUXURY</div>
+              <h3>F案 ラグジュアリー</h3>
+              <p>ダークトーン×ゴールドで仕立てた、特別感のある重厚なデザイン。</p>
+              <span class="card-cta">プレビューを開く <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+          <!-- G -->
+          <article class="card">
+            <a class="card-link" href="fits-top-design-g.html" aria-label="G案 ストーリーを開く"></a>
+            <div class="swatch" style="background:#F7F3EC;">
+              <span class="letter" style="color:#E8657D;">G</span>
+              <span class="dots" aria-hidden="true">
+                <i style="background:#F7F3EC;"></i><i style="background:#E8657D;"></i><i style="background:#C79A5B;"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="concept">STORY</div>
+              <h3>G案 ストーリー</h3>
+              <p>物語を読み進めるような流れで、世界観をじっくり伝えるデザイン。</p>
+              <span class="card-cta">プレビューを開く <span class="arrow">→</span></span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;" aria-label="資料">
+      <div class="container">
+        <div class="section-head">
+          <h2>資料</h2>
+        </div>
+        <div class="util">
+          <div class="icon" aria-hidden="true">✓</div>
+          <div class="util-text">
+            <h3>サイト仕様チェックリスト</h3>
+            <p>必要ページ・必要要素を整理した仕様シート。デザイン確認とあわせてご活用ください。</p>
+          </div>
+          <a class="util-cta" href="fits-page-spec-checklist.html">チェックリストを開く →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container">
+      fit's ハンモック&amp;フィットネス｜デザイン案ポータル
+    </div>
+  </footer>
+
+</body>
+</html>
